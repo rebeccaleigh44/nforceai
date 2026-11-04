@@ -1,11 +1,9 @@
 ---
 import Logo from './Logo.astro';
-import Arcs from './Arcs.astro';
 import { nav, legal, signInUrl } from '../lib/site';
 const year = new Date().getFullYear();
 ---
 <footer class="ftr">
-  <Arcs class="farcs" rings={10} tone="dark" />
   <div class="wrap">
     <div class="top">
       <div class="brand">
@@ -31,8 +29,7 @@ const year = new Date().getFullYear();
   </div>
 </footer>
 <style>
-  .ftr { position: relative; isolation: isolate; overflow: clip; padding: 6rem 0 2.5rem; color: var(--c-slate); background: var(--c-white); border-top: 1px solid rgb(16 0 140 / .1); }
-  :global(.farcs) { position: absolute; width: 900px; right: -300px; top: -250px; z-index: -1; opacity: .35; }
+  .ftr { position: relative; isolation: isolate; overflow: clip; padding: 6rem 0 2.5rem; color: var(--c-slate); background: var(--c-white); border-top: 1px solid var(--line-day); }
   .top { display: grid; grid-template-columns: 1.1fr 2fr; gap: 3rem; padding-bottom: 4rem; }
   .tag { margin-top: 1.25rem; font-size: var(--fs-lg); max-width: 18ch; color: var(--c-heading); font-weight: 300; }
   .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }

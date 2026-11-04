@@ -24,8 +24,7 @@ const steps = [
     <div class="wrap">
       <div class="lr-top">
         <div>
-          <p class="label eyebrow">Lead Response</p>
-          <h1 id="lr-h">Your team takes days. We take 30 seconds.</h1>
+          <h1 id="lr-h">Your team takes days. We take 30 seconds</h1>
         </div>
         <div class="lr-poster" aria-hidden="true">
           <span class="num p-a">47h</span>
@@ -40,7 +39,7 @@ const steps = [
   <section class="section day grain" aria-labelledby="how-h">
     <div class="wrap">
       <div class="corners"><p class="label">How it works</p><p class="label">From first message to booked</p></div>
-      <h2 id="how-h" class="how-h">Every lead gets an answer while it still wants one.</h2>
+      <h2 id="how-h" class="how-h">Every lead gets an answer while it still wants one</h2>
       <ol class="steps">
         {steps.map((s) => (
           <li><span class="num s-n">{s.n}</span><h3>{s.h}</h3><p>{s.p}</p></li>
@@ -52,8 +51,7 @@ const steps = [
   <section class="section night grain" aria-labelledby="ind-h">
     <div class="wrap ind-grid">
       <div>
-        <p class="label eyebrow">Built for paid lead gen</p>
-        <h2 id="ind-h">Wherever a lead costs money, it gets an answer.</h2>
+        <h2 id="ind-h">Wherever a lead costs money, it gets an answer</h2>
       </div>
       <ul class="ind-list">
         {industries.map((i) => (
@@ -68,7 +66,7 @@ const steps = [
     </div>
   </section>
 
-  <CtaBand title="Answer your next lead in 30 seconds." />
+  <CtaBand title="Answer your next lead in 30 seconds" />
 </Base>
 
 <style>
@@ -78,7 +76,7 @@ const steps = [
   .lr-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: end; }
   .lr-top h1 { font-size: clamp(2.75rem, 1.4rem + 4.6vw, 5.5rem); max-width: 13ch; }
   .lr-poster { position: relative; height: 100%; min-height: 220px; }
-  .lr-poster .num { position: absolute; line-height: .8; letter-spacing: -.04em; }
+  .lr-poster .num { position: absolute; line-height: .8; }
   .p-a { font-size: clamp(5rem, 2rem + 10vw, 12rem); color: rgb(255 255 255 / .1); right: 0; top: 0; }
   .p-b { font-size: clamp(3.5rem, 1.5rem + 6vw, 7.5rem); color: var(--c-white); right: 8%; bottom: 0; }
   .lr-lede { margin: 2rem 0 3rem; color: var(--c-tint); max-width: 52ch; }
@@ -86,7 +84,7 @@ const steps = [
   .corners { display: flex; justify-content: space-between; margin-bottom: 2.5rem; }
   .how-h { max-width: 18ch; margin-bottom: 3rem; }
   .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
-  .steps li { padding: 1.5rem 1.5rem 0 0; border-top: 1px solid rgb(16 0 140 / .16); position: relative; }
+  .steps li { padding: 1.5rem 1.5rem 0 0; border-top: 1px solid var(--line-day); position: relative; }
   .steps li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--c-primary); }
   .s-n { display: block; font-size: var(--fs-xl); color: var(--c-primary); margin-bottom: 1rem; }
   .steps h3 { margin-bottom: .5rem; }
@@ -95,13 +93,12 @@ const steps = [
 
   .ind-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
   .ind-grid h2 { max-width: 14ch; }
-  .ind-list { list-style: none; margin: 0; padding: 0; }
-  .ind-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid rgb(255 255 255 / .14); }
-  .ind-list li:last-child { border-bottom: 1px solid rgb(255 255 255 / .14); }
+  .ind-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+  .ind-list li { display: flex; justify-content: space-between; gap: 1rem; }
   .ind-n { color: var(--c-white); font-size: var(--fs-lg); font-weight: 400; }
   .ind-b { color: var(--c-lilac); font-size: var(--fs-sm); }
   .proof-band { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 2rem; margin-top: clamp(4rem, 8vw, 7rem); }
-  .pb-n { font-size: clamp(5rem, 2rem + 10vw, 12rem); line-height: .8; color: var(--c-white); letter-spacing: -.04em; }
+  .pb-n { font-size: clamp(5rem, 2rem + 10vw, 12rem); line-height: .8; color: var(--c-white); }
   .pb-l { color: var(--c-white); font-size: var(--fs-lg); padding-bottom: .5rem; }
   .pb-m { color: var(--c-lilac); text-align: right; padding-bottom: .5rem; }
   .pb-m .num { color: var(--c-white); font-size: var(--fs-xl); display: block; }

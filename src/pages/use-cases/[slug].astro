@@ -20,7 +20,7 @@ const others = [
 ];
 ---
 <Base title={d.metaTitle} description={d.metaDescription}>
-  <PageHero eyebrow={d.eyebrow} title={d.title} lede={d.lede} secondary={{ label: 'See pricing', href: '/pricing' }}>
+  <PageHero title={d.title} lede={d.lede} secondary={{ label: 'See pricing', href: '/pricing' }}>
     <UiCard
       title={`${channelName[d.sample.channel]} · ${d.sample.contact}, ${d.sample.company}`}
       kind="chat"
@@ -42,7 +42,6 @@ const others = [
 
   <section class="section night grain" aria-labelledby="features-h">
     <div class="wrap">
-      <p class="label eyebrow">How agents help</p>
       <h2 id="features-h" class="feat-h">{d.features.title}</h2>
       <ol class="feat">
         {d.features.items.map((f, i) => (
@@ -58,7 +57,6 @@ const others = [
 
   <section class="section day grain" aria-labelledby="impact-h">
     <div class="wrap">
-      <p class="label eyebrow">Results</p>
       <h2 id="impact-h" class="impact-h">{d.impact.title}</h2>
       <StatGrid stats={d.impact.stats} size="xl" />
       <nav class="more" aria-label="More use cases">
@@ -77,8 +75,7 @@ const others = [
   .problem h2 { max-width: 18ch; }
   .feat-h { max-width: 18ch; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   .feat { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 1.5rem; }
-  .feat li { position: relative; padding-top: 1.5rem; border-top: 1px solid rgb(255 255 255 / .16); }
-  .feat li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #B9B3FF; }
+  .feat li { position: relative; }
   .feat-n { display: block; font-size: var(--fs-xl); color: #B9B3FF; margin-bottom: 1rem; }
   .feat h3 { margin-bottom: .5rem; }
   .feat p { color: var(--c-tint); }

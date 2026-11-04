@@ -69,7 +69,7 @@ const bullet = z.object({ t: z.string(), d: z.string() });
 const useCases = defineCollection({
   loader: file('src/data/use-cases.json'),
   schema: z.object({
-    order: z.number(), name: z.string(), eyebrow: z.string(),
+    order: z.number(), name: z.string(),
     metaTitle: z.string(), metaDescription: z.string(),
     title: z.string(), lede: z.string(),
     problem: z.object({ title: z.string(), body: z.string(), stats: z.array(stat) }),

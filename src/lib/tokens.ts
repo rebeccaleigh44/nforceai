@@ -30,6 +30,21 @@ export const color = {
   alert: '#FB4141',
 } as const;
 
+/**
+ * Line and panel roles: the only colors for rules, borders and inset panels.
+ * Day roles are solid. Night roles stay translucent on purpose: they sit on a
+ * moving light field and frosted glass, where a solid line would read as a
+ * dark stripe over the cobalt glow.
+ */
+export const role = {
+  'line-day': '#D5D2F0',
+  'line-day-strong': '#B8B3E3',
+  'panel-day': '#ECEAFB',
+  'line-night': 'rgb(255 255 255 / .15)',
+  'line-night-strong': 'rgb(255 255 255 / .32)',
+  'panel-night': 'rgb(255 255 255 / .08)',
+} as const;
+
 export const type = {
   family: "'Sora Variable', 'Sora', system-ui, sans-serif",
   heading: { weight: 600, lineHeight: 'normal', letterSpacing: '0.005rem' },
@@ -69,6 +84,7 @@ export const layout = { max: '1320px', gutter: 'clamp(1.25rem, 4vw, 3rem)' } as 
 export function cssVars(): string {
   const out: string[] = [];
   for (const [k, v] of Object.entries(color)) out.push(`--c-${k}:${v}`);
+  for (const [k, v] of Object.entries(role)) out.push(`--${k}:${v}`);
   for (const [k, v] of Object.entries(type.scale)) out.push(`--fs-${k}:${v}`);
   for (const [k, v] of Object.entries(space)) out.push(`--s-${k}:${v}`);
   for (const [k, v] of Object.entries(radius)) out.push(`--r-${k}:${v}`);

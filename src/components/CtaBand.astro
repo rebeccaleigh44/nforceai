@@ -1,10 +1,8 @@
 ---
-import Arcs from './Arcs.astro';
 interface Props { title?: string; body?: string; tone?: 'day' | 'night'; primary?: { label: string; href: string } }
-const { title = 'See an agent work on your own leads.', body = 'Thirty minutes. We set up an agent on your use case and show you the numbers it reports.', tone = 'day', primary = { label: 'Book a demo', href: '/demo' } } = Astro.props;
+const { title = 'See an agent work on your own leads', body = 'Thirty minutes. We set up an agent on your use case and show you the numbers it reports.', tone = 'day', primary = { label: 'Book a demo', href: '/demo' } } = Astro.props;
 ---
-<section class:list={['section grain cta', tone]}>
-  <Arcs class="cta-arcs" tone={tone === 'day' ? 'dark' : 'light'} rings={8} />
+<section class:list={['section cta', tone]}>
   <div class="wrap cta-in">
     <h2>{title}</h2>
     <div class="cta-r">
@@ -14,7 +12,9 @@ const { title = 'See an agent work on your own leads.', body = 'Thirty minutes. 
   </div>
 </section>
 <style>
-  :global(.cta-arcs) { position: absolute; width: 1100px; left: -420px; top: 50%; transform: translateY(-50%); z-index: -1; opacity: .55; }
+  /* Flat surfaces: the hero keeps the only light field */
+  .cta.day { background: var(--c-tint); }
+  .cta.night { background: var(--c-night1); }
   .cta-in { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: end; }
   .cta-in h2 { font-size: var(--fs-3xl); max-width: 14ch; }
   .cta-r { display: grid; gap: 1.5rem; }

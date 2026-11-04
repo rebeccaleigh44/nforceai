@@ -87,7 +87,7 @@ export default function DemoForm({ countries }: { countries: Country[] }) {
   if (status === 'sent') {
     return (
       <div class="df-done" role="status">
-        <h2>Thanks, {first}.</h2>
+        <h2>Thanks, {first}</h2>
         <p>Your request is in. Our assistant will follow up by email in a few minutes to pick a time.</p>
       </div>
     );

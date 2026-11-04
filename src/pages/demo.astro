@@ -21,11 +21,9 @@ const expect = [
 >
   <section class="section night grain demo" aria-labelledby="demo-h">
     <Arcs class="demo-arcs" rings={10} />
-    <div class="demo-beam" aria-hidden="true"></div>
     <div class="wrap demo-grid">
       <div class="demo-copy">
-        <p class="label eyebrow">Book a demo</p>
-        <h1 id="demo-h">See an agent work on your own leads.</h1>
+        <h1 id="demo-h">See an agent work on your own leads</h1>
         <ul class="expect">
           {expect.map(([h, p]) => <li><span class="e-h">{h}</span><span class="e-p">{p}</span></li>)}
         </ul>
@@ -39,11 +37,10 @@ const expect = [
 <style>
   .demo { padding-top: clamp(3rem, 6vw, 5rem); }
   :global(.demo-arcs) { position: absolute; z-index: -1; width: 1200px; left: -560px; bottom: -520px; opacity: .55; }
-  .demo-beam { position: absolute; z-index: -1; top: 0; bottom: 0; left: 46%; width: 260px; background: radial-gradient(50% 45% at 50% 35%, rgb(185 179 255 / .4), transparent 70%); filter: blur(30px); }
   .demo-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
   .demo-copy h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); max-width: 12ch; }
-  .expect { list-style: none; margin: 2.5rem 0 0; padding: 0; }
-  .expect li { display: grid; gap: .2rem; padding: 1rem 0; border-top: 1px solid rgb(255 255 255 / .14); }
+  .expect { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; gap: 1.25rem; }
+  .expect li { display: grid; gap: .2rem; }
   .e-h { color: var(--c-white); font-weight: 600; }
   .e-p { color: var(--c-tint); }
   .demo-form { padding: clamp(1.5rem, 3vw, 2.25rem); background: rgb(255 255 255 / .94); color: var(--c-body); }

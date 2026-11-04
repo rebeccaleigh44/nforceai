@@ -16,7 +16,6 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
   <section class="night grain lg-head" aria-labelledby="lg-h">
     <Arcs class="lg-arcs" rings={9} />
     <div class="wrap">
-      <p class="label eyebrow">Legal</p>
       <h1 id="lg-h">{entry.data.title}</h1>
       <p class="lg-date">{entry.data.dateLabel ?? 'Effective date'}: {entry.data.effective}</p>
     </div>
@@ -57,7 +56,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
   .lg-side a[aria-current="page"] { font-weight: 500; }
 
   .prose { max-width: 72ch; color: var(--c-body); }
-  .prose :global(h2) { font-size: var(--fs-xl); margin: 2.75rem 0 .9rem; scroll-margin-top: calc(68px + 1.5rem); padding-top: 1.5rem; border-top: 1px solid rgb(16 0 140 / .12); }
+  .prose :global(h2) { font-size: var(--fs-xl); margin: 2.75rem 0 .9rem; scroll-margin-top: calc(68px + 1.5rem); padding-top: 1.5rem; border-top: 1px solid var(--line-day); }
   .prose :global(h2:first-child) { margin-top: 0; padding-top: 0; border-top: 0; }
   .prose :global(p) { margin: 0 0 1rem; }
   .prose :global(ul), .prose :global(ol) { margin: 0 0 1.1rem; padding-left: 1.25rem; display: grid; gap: .45rem; }
@@ -67,8 +66,8 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
   .prose :global(strong) { color: var(--c-heading); font-weight: 600; }
   .prose :global(a) { overflow-wrap: anywhere; }
   .prose :global(table) { width: 100%; border-collapse: collapse; margin: .5rem 0 1.5rem; font-size: var(--fs-sm); }
-  .prose :global(th) { text-align: left; font-weight: 600; color: var(--c-heading); padding: .7rem .9rem .7rem 0; border-bottom: 1.5px solid rgb(16 0 140 / .25); white-space: nowrap; }
-  .prose :global(td) { padding: .75rem .9rem .75rem 0; border-bottom: 1px solid rgb(16 0 140 / .1); vertical-align: top; }
+  .prose :global(th) { text-align: left; font-weight: 600; color: var(--c-heading); padding: .7rem .9rem .7rem 0; border-bottom: 1.5px solid var(--line-day-strong); white-space: nowrap; }
+  .prose :global(td) { padding: .75rem .9rem .75rem 0; border-bottom: 1px solid var(--line-day); vertical-align: top; }
   .prose :global(td:first-child) { color: var(--c-heading); font-weight: 400; }
   .prose :global(td:last-child), .prose :global(th:last-child) { padding-right: 0; white-space: nowrap; }
 
@@ -82,7 +81,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
   @media (max-width: 640px) {
     .prose :global(table), .prose :global(thead), .prose :global(tbody), .prose :global(tr), .prose :global(td) { display: block; width: 100%; }
     .prose :global(thead) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .prose :global(tr) { padding: .8rem 0; border-bottom: 1px solid rgb(16 0 140 / .12); }
+    .prose :global(tr) { padding: .8rem 0; border-bottom: 1px solid var(--line-day); }
     .prose :global(td) { border: 0; padding: 0; white-space: normal !important; }
     .prose :global(td:first-child) { font-weight: 600; }
   }

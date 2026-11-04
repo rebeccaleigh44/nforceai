@@ -38,7 +38,7 @@ const ctaTone = tone() as 'day' | 'night';
 let row = 0;
 ---
 <Base title={d.metaTitle} description={d.metaDescription}>
-  <PageHero eyebrow={stop.name} title={d.title} lede={d.lede} secondary={{ label: 'See pricing', href: '/pricing' }}>
+  <PageHero title={d.title} lede={d.lede} secondary={{ label: 'See pricing', href: '/pricing' }}>
     <UiCard {...d.heroCard} />
     <LoopStepper slot="after" current={entry.id} stops={stops} />
   </PageHero>
@@ -47,7 +47,7 @@ let row = 0;
     <section class:list={['section grain', channelsTone]} aria-labelledby="ch-h">
       <div class="wrap">
         <div class="head">
-          <div><p class="label eyebrow">{d.channels.label}</p><h2 id="ch-h">{d.channels.title}</h2></div>
+          <div><h2 id="ch-h">{d.channels.title}</h2></div>
           <p class="lede">{d.channels.body}</p>
         </div>
         <ul class="channels">
@@ -71,21 +71,22 @@ let row = 0;
       <div class="wrap">
         {g.intro && (
           <div class="head intro">
-            <div><p class="label eyebrow">{g.intro.label}</p><h2>{g.intro.title}</h2></div>
+            <div><h2>{g.intro.title}</h2></div>
             <p class="lede">{g.intro.body}</p>
           </div>
         )}
-        {g.rows.map((r, ri) => {
+        <div class="rows">
+        {g.rows.map((r) => {
           const reverse = row++ % 2 === 1;
           return (
             <>
-              {ri > 0 && <hr class="rule split" />}
               <FeatureRow label={r.label} tag={r.tag} title={r.title} body={r.body} bullets={r.bullets} reverse={reverse} level={g.intro ? 'h3' : 'h2'}>
                 <UiCard {...r.card} />
               </FeatureRow>
             </>
           );
         })}
+        </div>
       </div>
     </section>
   ))}
@@ -94,7 +95,7 @@ let row = 0;
     <section class:list={['section grain', integrationsTone]} aria-labelledby="int-h">
       <div class="wrap">
         <div class="head">
-          <div><p class="label eyebrow">{d.integrations.label}</p><h2 id="int-h">{d.integrations.title}</h2></div>
+          <div><h2 id="int-h">{d.integrations.title}</h2></div>
           <p class="lede">{d.integrations.body}</p>
         </div>
         <ul class="ints">{d.integrations.items.map((n) => <li>{n}</li>)}</ul>
@@ -109,7 +110,7 @@ let row = 0;
     </div>
   </section>
 
-  <CtaBand tone={ctaTone} title="See NForce in action." body="A personalized walkthrough of the platform, on your use case, in 30 minutes or less." />
+  <CtaBand tone={ctaTone} title="See NForce in action" body="A personalized walkthrough of the platform, on your use case, in 30 minutes or less." />
 </Base>
 
 <style>
@@ -117,19 +118,17 @@ let row = 0;
   .head h2 { max-width: 18ch; }
   .night .head .lede { color: var(--c-tint); }
   .channels { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 1.5rem; }
-  .channels li { padding-top: 1.5rem; border-top: 1px solid rgb(16 0 140 / .16); }
-  .night .channels li { border-top-color: rgb(255 255 255 / .16); }
   .ch-i { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 1.1rem; background: var(--c-primary); color: var(--c-white); }
   .channels h3 { margin-bottom: .4rem; }
-  .split { margin: clamp(3rem, 6vw, 5rem) 0; }
-  .ints { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
-  .ints li { padding: .7rem 1.2rem; border-radius: 99px; border: 1px solid rgb(16 0 140 / .18); background: rgb(255 255 255 / .6); color: var(--c-heading); font-weight: 400; }
-  .night .ints li { border-color: rgb(255 255 255 / .18); background: rgb(255 255 255 / .06); color: var(--c-white); }
+  .rows { display: grid; gap: clamp(5rem, 10vw, 8rem); }
+  .ints { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 1rem 2rem; }
+  .ints li { color: var(--c-heading); font-weight: 500; font-size: var(--fs-lg); }
+  .night .ints li { color: var(--c-white); }
   .nextstop { padding-block: clamp(3rem, 6vw, 4.5rem); }
   .ns { display: grid; gap: 1rem; }
-  .ns a { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .25rem 1.25rem; text-decoration: none; color: var(--c-heading); font-size: var(--fs-2xl); font-weight: 600; padding-top: 1.25rem; border-top: 1px solid rgb(16 0 140 / .16); }
+  .ns a { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .25rem 1.25rem; text-decoration: none; color: var(--c-heading); font-size: var(--fs-2xl); font-weight: 600; padding-top: 1.25rem; border-top: 1px solid var(--line-day); }
   .ns .num { color: var(--c-primary); font-size: var(--fs-lg); }
-  .night .ns a { color: var(--c-white); border-top-color: rgb(255 255 255 / .16); }
+  .night .ns a { color: var(--c-white); border-top-color: var(--line-night); }
   .night .ns .num, .night .ns-arrow { color: #B9B3FF; }
   .night .ns-line { color: var(--c-tint); }
   .ns-line { grid-column: 2; font-size: var(--fs-md); font-weight: 300; color: var(--c-body); }

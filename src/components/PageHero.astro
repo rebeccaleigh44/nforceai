@@ -2,18 +2,16 @@
 /** Night hero for inner pages: copy left, a visual (slot) right. */
 import Arcs from './Arcs.astro';
 interface Props {
-  eyebrow: string; title: string; lede: string;
+  title: string; lede: string;
   primary?: { label: string; href: string }; secondary?: { label: string; href: string };
 }
-const { eyebrow, title, lede, primary = { label: 'Book a demo', href: '/demo' }, secondary } = Astro.props;
+const { title, lede, primary = { label: 'Book a demo', href: '/demo' }, secondary } = Astro.props;
 ---
 <section class="ph night grain" aria-labelledby="ph-h">
-  <div class="ph-beam" aria-hidden="true"></div>
   <div class="ph-reed reeded" aria-hidden="true"></div>
   <Arcs class="ph-arcs" rings={9} />
   <div class="wrap ph-grid">
     <div class="ph-copy">
-      <p class="label eyebrow">{eyebrow}</p>
       <h1 id="ph-h">{title}</h1>
       <p class="ph-lede">{lede}</p>
       <div class="ph-cta">
@@ -27,7 +25,6 @@ const { eyebrow, title, lede, primary = { label: 'Book a demo', href: '/demo' },
 </section>
 <style>
   .ph { position: relative; isolation: isolate; overflow: clip; padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5.5rem); }
-  .ph-beam { position: absolute; z-index: -1; top: 0; bottom: 0; left: 66%; width: 240px; background: radial-gradient(50% 45% at 50% 30%, rgb(185 179 255 / .45), transparent 70%); filter: blur(28px); }
   .ph-reed { position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(64% - 40px); width: calc(10% + 80px); opacity: .8; mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
   :global(.ph-arcs) { position: absolute; z-index: -1; width: 1200px; right: -480px; top: 50%; transform: translateY(-50%); opacity: .28; }
   .ph-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }

@@ -1,5 +1,5 @@
 ---
-/** Copy on one side, a UI card (slot) on the other. Rules instead of cards for the bullets. */
+/** Copy on one side, a UI card (slot) on the other. Spacing, not rules, separates the bullets. */
 interface Props {
   label: string; tag?: string; title: string; body: string;
   bullets?: { t: string; d: string }[]; reverse?: boolean; level?: 'h2' | 'h3';
@@ -9,7 +9,7 @@ const H = level;
 ---
 <div class:list={['fr', { reverse }]}>
   <div class="fr-copy">
-    <p class="label eyebrow">{label}{tag && <span class="fr-tag">{tag}</span>}</p>
+    <p class="fr-label">{label}{tag && <span class="fr-tag"> · {tag}</span>}</p>
     <H class:list={['fr-h', { sub: level === 'h3' }]}>{title}</H>
     <p class="fr-body">{body}</p>
     {bullets.length > 0 && (
@@ -27,10 +27,12 @@ const H = level;
   .fr-h.sub { font-size: var(--fs-xl); max-width: 22ch; }
   .fr-body { margin-top: 1.1rem; max-width: 48ch; }
   :global(.night) .fr-body { color: var(--c-tint); }
-  .fr-tag { margin-left: .75rem; padding: .1rem .55rem; border-radius: 99px; border: 1px solid currentColor; letter-spacing: .04em; text-transform: none; opacity: .85; }
-  .fr-list { margin: 1.75rem 0 0; display: grid; }
-  .fr-list div { padding: .9rem 0; border-top: 1px solid rgb(16 0 140 / .14); display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; }
-  :global(.night) .fr-list div { border-top-color: rgb(255 255 255 / .14); }
+  .fr-label { margin-bottom: .75rem; font-size: var(--fs-sm); font-weight: 500; color: var(--c-primary); }
+  :global(.night) .fr-label { color: var(--c-lilac); }
+  .fr-tag { font-weight: 300; color: var(--c-body); }
+  :global(.night) .fr-tag { color: var(--c-tint); }
+  .fr-list { margin: 1.75rem 0 0; display: grid; gap: 1rem; }
+  .fr-list div { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; }
   .fr-list dt { color: var(--c-heading); font-weight: 600; }
   :global(.night) .fr-list dt { color: var(--c-white); }
   .fr-list dd { margin: 0; }

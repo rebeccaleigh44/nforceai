@@ -44,7 +44,6 @@ const y = (v: number) => (v / max) * (H - 20);
 ---
 <Base title="Partner Program | NForce.AI" description="Join the NForce partner program and add an AI agent practice to your agency.">
   <PageHero
-    eyebrow="Partner program"
     title="Grow your agency with AI"
     lede="Join the NForce partner program and add an AI agent practice to your agency, with recurring revenue, full platform access and hands-on support."
     primary={{ label: 'Become a partner', href: '/demo' }}
@@ -75,7 +74,7 @@ const y = (v: number) => (v / max) * (H - 20);
   <section class="section day grain" aria-labelledby="opp-h">
     <div class="wrap">
       <div class="head">
-        <div><p class="label eyebrow">The opportunity</p><h2 id="opp-h">Your clients need AI agents. You can deliver them.</h2></div>
+        <div><h2 id="opp-h">Your clients need AI agents. You can deliver them</h2></div>
         <p class="lede">Businesses across every industry are looking for AI-powered automation. As an NForce partner, you have the platform, training and support to deliver enterprise-grade AI agent solutions, and build a new recurring revenue stream.</p>
       </div>
       <StatGrid stats={opportunity} />
@@ -84,7 +83,6 @@ const y = (v: number) => (v / max) * (H - 20);
 
   <section id="how" class="section night grain" aria-labelledby="how-h">
     <div class="wrap">
-      <p class="label eyebrow">How it works</p>
       <h2 id="how-h" class="how-h">Three steps to recurring revenue</h2>
       <ol class="steps">
         {steps.map((s, i) => (<li><span class="num s-n">0{i + 1}</span><h3>{s.h}</h3><p>{s.p}</p></li>))}
@@ -115,7 +113,6 @@ const y = (v: number) => (v / max) * (H - 20);
 
   <section class="section night grain" aria-labelledby="ben-h">
     <div class="wrap">
-      <p class="label eyebrow">Partner benefits</p>
       <h2 id="ben-h" class="how-h">Why agencies choose NForce</h2>
       <ul class="bens">
         {benefits.map((b) => (<li><h3>{b.h}</h3><p>{b.p}</p></li>))}
@@ -125,47 +122,45 @@ const y = (v: number) => (v / max) * (H - 20);
 
   <section class="section day grain feat-sec" aria-labelledby="fp-h">
     <div class="wrap fp">
-      <div><p class="label eyebrow">Featured partners</p><h2 id="fp-h">Trusted by agencies worldwide</h2></div>
+      <div><h2 id="fp-h">Trusted by agencies worldwide</h2></div>
       <ul class="fp-list">{featured.map((n) => <li>{n}</li>)}</ul>
     </div>
   </section>
 
   <CtaBand
     tone="night"
-    title="Grow your agency with NForce."
+    title="Grow your agency with NForce"
     body="Book a call with our partnerships team. We'll walk you through the program, answer your questions, and help you get started."
     primary={{ label: 'Book a call', href: '/demo' }}
   />
 </Base>
 
 <style>
-  .rev { margin: 0; padding: 1.25rem 1.35rem; border-radius: var(--r-lg); background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .14); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
-  .rev-h { display: flex; justify-content: space-between; gap: 1rem; font-size: var(--fs-sm); color: var(--c-white); font-weight: 500; padding-bottom: .9rem; margin-bottom: 1rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
-  .rev-s { font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--c-lilac); border: 1px solid rgb(217 214 255 / .3); border-radius: 99px; padding: .1rem .5rem; font-weight: 400; }
+  .rev { margin: 0; padding: 1.25rem 1.35rem; border-radius: var(--r-lg); background: var(--panel-night); border: 1px solid var(--line-night); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+  .rev-h { display: flex; justify-content: space-between; gap: 1rem; font-size: var(--fs-sm); color: var(--c-white); font-weight: 500; margin-bottom: 1.25rem; }
+  .rev-s { font-size: var(--fs-xs); color: var(--c-lilac); font-weight: 400; }
   .rev svg { width: 100%; height: auto; overflow: visible; }
   .r-mrr { fill: #6F5CFF; }
   .r-fee { fill: #D9D6FF; }
   .r-m { fill: var(--c-lilac); font-size: 11px; font-family: var(--font); }
   .rev-key { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: var(--fs-xs); color: var(--c-tint); }
   .rev-key li { display: inline-flex; align-items: center; gap: .5rem; }
-  .k { width: 12px; height: 12px; border-radius: 3px; }
+  .k { width: 12px; height: 12px; border-radius: 50%; }
   .k.fee { background: #D9D6FF; } .k.mrr { background: #6F5CFF; }
 
   .head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem 4rem; align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   .head h2 { max-width: 16ch; }
   .how-h { max-width: 18ch; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 2rem; }
-  .steps li { position: relative; padding-top: 1.5rem; border-top: 1px solid rgb(255 255 255 / .16); }
+  .steps li { position: relative; padding-top: 1.5rem; border-top: 1px solid var(--line-night); }
   .steps li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #B9B3FF; }
   .s-n { display: block; font-size: var(--fs-xl); color: #B9B3FF; margin-bottom: 1rem; }
   .steps h3, .bens h3 { margin-bottom: .5rem; }
   .steps p, .bens p { color: var(--c-tint); }
   .bens { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; }
-  .bens li { padding-top: 1.25rem; border-top: 1px solid rgb(255 255 255 / .16); }
   .fp { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem 4rem; align-items: center; }
-  .fp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid rgb(16 0 140 / .14); }
-  .fp-list li { padding: 1.4rem 0; border-bottom: 1px solid rgb(16 0 140 / .14); font-size: var(--fs-xl); font-weight: 600; color: var(--c-heading); letter-spacing: -.01em; }
-  .fp-list li:nth-child(odd) { padding-right: 1rem; }
+  .fp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; }
+  .fp-list li { font-size: var(--fs-xl); font-weight: 600; color: var(--c-heading); }
   @media (max-width: 960px) {
     .head, .fp { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; gap: 2rem; }

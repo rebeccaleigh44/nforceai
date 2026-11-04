@@ -16,24 +16,16 @@ const parse = (v: string) => { const m = v.match(/^(\D*)(\d[\d,]*)(\D*)$/); retu
   })}
 </ul>
 <style>
-  .sg { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgb(16 0 140 / .16); }
-  :global(.night) .sg { border-top-color: rgb(255 255 255 / .16); }
-  .sg li { padding: 1.6rem 1.25rem 0 0; }
-  .sg li + li { padding-left: 1.25rem; border-left: 1px solid rgb(16 0 140 / .16); }
-  :global(.night) .sg li + li { border-left-color: rgb(255 255 255 / .16); }
-  .sg-n { font-size: var(--fs-3xl); line-height: 1; letter-spacing: -.02em; color: var(--c-heading); white-space: nowrap; }
+  .sg { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem 2.5rem; }
+  .sg-n { font-size: var(--fs-3xl); line-height: 1; color: var(--c-heading); white-space: nowrap; }
   .xl .sg-n { font-size: clamp(3rem, 1.5rem + 5vw, 6rem); color: var(--c-primary); }
   :global(.night) .sg-n { color: var(--c-white); }
   .sg-l { margin-top: .7rem; color: var(--c-heading); font-weight: 400; max-width: 22ch; }
   :global(.night) .sg-l { color: var(--c-tint); }
   @media (max-width: 900px) {
     .sg { grid-template-columns: 1fr 1fr; }
-    .sg li:nth-child(3) { padding-left: 0; border-left: 0; }
-    .sg li { padding-bottom: 1.5rem; }
   }
   @media (max-width: 480px) {
     .sg { grid-template-columns: 1fr; }
-    .sg li, .sg li + li { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid rgb(16 0 140 / .16); }
-    :global(.night) .sg li { border-bottom-color: rgb(255 255 255 / .16); }
   }
 </style>

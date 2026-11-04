@@ -130,7 +130,6 @@ export default function OrbitLoop({ stops }: { stops: Stop[] }) {
         </div>
 
         <div class="orbit-copy">
-          <p class="label eyebrow">The NForce loop</p>
           <ol class="o-tabs">
             {stops.map((s, i) => (
               <li><button class={i === active ? 'on' : ''} aria-current={i === active ? 'step' : undefined} onClick={() => goTo(i)}>{s.name}</button></li>

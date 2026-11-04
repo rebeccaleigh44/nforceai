@@ -4,15 +4,12 @@
  * Kept out of search results (noindex) so placeholder copy never replaces the live page in Google.
  */
 import Base from './Base.astro';
-import Arcs from '../components/Arcs.astro';
-interface Props { title: string; description: string; eyebrow: string; heading: string; lede: string; kind?: 'page' | 'legal' }
-const { title, description, eyebrow, heading, lede, kind = 'page' } = Astro.props;
+interface Props { title: string; description: string; heading: string; lede: string; kind?: 'page' | 'legal' }
+const { title, description, heading, lede, kind = 'page' } = Astro.props;
 ---
 <Base title={title} description={description} noindex>
   <section class="section night grain ph-page" aria-labelledby="pp-h">
-    <Arcs class="pp-arcs" rings={10} />
     <div class="wrap pp">
-      <p class="label eyebrow">{eyebrow}</p>
       <h1 id="pp-h">{heading}</h1>
       <p class="pp-lede">{lede}</p>
       <p class="pp-note">
@@ -28,9 +25,8 @@ const { title, description, eyebrow, heading, lede, kind = 'page' } = Astro.prop
 </Base>
 <style>
   .ph-page { min-height: 72vh; display: grid; align-items: center; }
-  :global(.pp-arcs) { position: absolute; z-index: -1; width: 1100px; right: -420px; top: 50%; transform: translateY(-50%); opacity: .3; }
   .pp h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1.05; max-width: 16ch; }
   .pp-lede { margin-top: 1.4rem; color: var(--c-tint); font-size: clamp(1.0625rem, 1rem + .35vw, 1.25rem); line-height: 1.5; max-width: 48ch; }
-  .pp-note { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.75rem; padding: .5rem .9rem; border-radius: 99px; background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .16); color: var(--c-white); font-size: var(--fs-sm); font-weight: 400; }
+  .pp-note { display: flex; align-items: center; gap: .6rem; margin-top: 1.75rem; color: var(--c-white); font-size: var(--fs-sm); font-weight: 400; }
   .pp-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
 </style>

@@ -34,7 +34,7 @@ strong, b { font-weight: 600; }
 
 .num { font-weight: 600; font-variant-numeric: tabular-nums; }
 
-:focus-visible { outline: 2px solid var(--c-cyan); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--c-cyan); outline-offset: 3px; border-radius: var(--r-sm); }
 .night :focus-visible { outline-color: #8FE9F7; }
 
 .skip {
@@ -52,14 +52,9 @@ strong, b { font-weight: 600; }
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
 .section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); isolation: isolate; overflow: clip; }
 
-/* Small corner labels, editorial-poster style */
-.label {
-  font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--c-slate2);
-}
+/* Small labels: sentence case, normal spacing */
+.label { font-size: var(--fs-sm); font-weight: 500; color: var(--c-slate2); }
 .night .label { color: var(--c-lilac); }
-.eyebrow { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: var(--s-5); }
-.eyebrow::before { content: ""; width: 2.25rem; height: 1px; background: currentColor; opacity: .6; }
 
 .lede { font-size: var(--fs-lg); max-width: 38ch; }
 
@@ -94,8 +89,8 @@ strong, b { font-weight: 600; }
 
 /* ---------- Glass ---------- */
 .frost {
-  background: rgb(255 255 255 / .07);
-  border: 1px solid rgb(255 255 255 / .14);
+  background: var(--panel-night);
+  border: 1px solid var(--line-night);
   -webkit-backdrop-filter: blur(18px) saturate(115%);
   backdrop-filter: blur(18px) saturate(115%);
   border-radius: var(--r-lg);
@@ -140,10 +135,10 @@ strong, b { font-weight: 600; }
 .btn:active { transform: translateY(1px); }
 .btn-primary { background: var(--c-primary); color: var(--c-white); }
 .btn-primary:hover { background: #3721D8; }
-.btn-ghost { background: transparent; color: var(--c-heading); border-color: rgb(16 0 140 / .25); }
+.btn-ghost { background: transparent; color: var(--c-heading); border-color: var(--line-day-strong); }
 .btn-ghost:hover { border-color: var(--c-heading); }
-.night .btn-ghost { color: var(--c-white); border-color: rgb(255 255 255 / .3); }
-.night .btn-ghost:hover { border-color: var(--c-white); background: rgb(255 255 255 / .06); }
+.night .btn-ghost { color: var(--c-white); border-color: var(--line-night-strong); }
+.night .btn-ghost:hover { border-color: var(--c-white); background: var(--panel-night); }
 .btn-light { background: var(--c-white); color: var(--c-heading); }
 .btn-light:hover { background: var(--c-tint); }
 .btn[disabled] { opacity: .5; cursor: not-allowed; }
@@ -161,18 +156,18 @@ strong, b { font-weight: 600; }
 .night .field label, .night .field .flabel { color: var(--c-lilac); }
 .input {
   width: 100%; min-height: 48px; padding: .7rem .9rem; border-radius: var(--r-md);
-  border: 1px solid rgb(16 0 140 / .18); background: var(--c-white); color: var(--c-heading);
+  border: 1px solid var(--line-day); background: var(--c-white); color: var(--c-heading);
   font-weight: 400;
 }
 .input:focus { outline: 2px solid var(--c-primary); outline-offset: 1px; border-color: transparent; }
-.night .input { background: rgb(255 255 255 / .06); border-color: rgb(255 255 255 / .2); color: var(--c-white); }
+.night .input { background: var(--panel-night); border-color: var(--line-night); color: var(--c-white); }
 
 /* Ranges */
 input[type="range"] { width: 100%; accent-color: var(--c-primary); min-height: 32px; }
 
 /* Rule lines instead of cards */
-.rule { border: 0; border-top: 1px solid rgb(16 0 140 / .14); margin: 0; }
-.night .rule { border-top-color: rgb(255 255 255 / .14); }
+.rule { border: 0; border-top: 1px solid var(--line-day); margin: 0; }
+.night .rule { border-top-color: var(--line-night); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -186,7 +181,7 @@ input[type="range"] { width: 100%; accent-color: var(--c-primary); min-height: 3
 .night .frost-light { color: var(--c-body); }
 .night .frost-light h2, .night .frost-light h3 { color: var(--c-heading); }
 .night .frost-light .field label, .night .frost-light .field .flabel { color: var(--c-slate); }
-.night .frost-light .input { background: var(--c-white); border-color: rgb(16 0 140 / .18); color: var(--c-heading); }
+.night .frost-light .input { background: var(--c-white); border-color: var(--line-day); color: var(--c-heading); }
 .night .frost-light .label { color: var(--c-slate2); }
 .night .frost-light a:not(.btn) { color: var(--c-primary); }
 .night .frost-light :focus-visible { outline-color: var(--c-primary); }
