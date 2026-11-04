@@ -1,0 +1,45 @@
+---
+import Logo from './Logo.astro';
+import Arcs from './Arcs.astro';
+import { nav, legal, signInUrl } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <Arcs class="farcs" rings={10} tone="dark" />
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <Logo />
+        <p class="tag">Everything you need to go from AI to ROI.</p>
+      </div>
+      <div class="cols">
+        {nav.map((g) => 'items' in g ? (
+          <div><p class="label">{g.label}</p><ul>{g.items.map((s) => <li><a href={s.href}>{s.label}</a></li>)}</ul></div>
+        ) : null)}
+        <div><p class="label">Company</p><ul>
+          {nav.filter((g) => !('items' in g)).map((g) => <li><a href={(g as any).href}>{g.label}</a></li>)}
+          <li><a href="/blog">Blog</a></li>
+          <li><a href={signInUrl}>Sign in</a></li>
+        </ul></div>
+      </div>
+    </div>
+    <hr class="rule" />
+    <div class="base">
+      <p>© {year} NForce.AI</p>
+      <ul class="legal">{legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </div>
+  </div>
+</footer>
+<style>
+  .ftr { position: relative; isolation: isolate; overflow: clip; padding: 6rem 0 2.5rem; color: var(--c-slate); background: var(--c-white); border-top: 1px solid rgb(16 0 140 / .1); }
+  :global(.farcs) { position: absolute; width: 900px; right: -300px; top: -250px; z-index: -1; opacity: .35; }
+  .top { display: grid; grid-template-columns: 1.1fr 2fr; gap: 3rem; padding-bottom: 4rem; }
+  .tag { margin-top: 1.25rem; font-size: var(--fs-lg); max-width: 18ch; color: var(--c-heading); font-weight: 300; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  ul { list-style: none; padding: 0; margin: .9rem 0 0; display: grid; gap: .5rem; }
+  a:not(.logo) { color: var(--c-slate) !important; text-decoration: none; font-size: var(--fs-sm); }
+  a:not(.logo):hover { color: var(--c-heading) !important; text-decoration: underline; }
+  .base { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; font-size: var(--fs-xs); }
+  .legal { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0; }
+  @media (max-width: 860px) { .top { grid-template-columns: 1fr; } .cols { grid-template-columns: 1fr 1fr; } }
+</style>

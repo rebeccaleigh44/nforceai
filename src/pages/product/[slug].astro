@@ -1,0 +1,140 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import UiCard from '../../components/UiCard.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import LoopStepper from '../../components/LoopStepper.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { channelIcon } from '../../components/islands/Icons';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('productPages');
+  const stops = (await getCollection('platform')).map((e) => ({ id: e.id, ...e.data })).sort((a, b) => a.order - b.order);
+  return pages.map((entry) => ({ params: { slug: entry.id }, props: { entry, stops } }));
+}
+interface Props {
+  entry: CollectionEntry<'productPages'>;
+  stops: { id: string; name: string; verb: string; url: string; order: number; line: string }[];
+}
+const { entry, stops } = Astro.props;
+const d = entry.data;
+const stop = stops.find((s) => s.id === entry.id)!;
+const next = stops[(stops.indexOf(stop) + 1) % stops.length];
+
+// Group rows into bands. With an intro (Deploy), the three instruction modes share one band.
+const groups = d.intro
+  ? [{ intro: d.intro, rows: d.sections.slice(0, 3) }, ...d.sections.slice(3).map((r) => ({ intro: undefined, rows: [r] }))]
+  : d.sections.map((r) => ({ intro: undefined, rows: [r] }));
+
+// Alternate daylight and night bands after the (night) hero.
+let band = 0;
+const tone = () => (band++ % 2 === 0 ? 'day' : 'night');
+const channelsTone = d.channels ? tone() : '';
+const groupTones = groups.map(() => tone());
+const integrationsTone = d.integrations ? tone() : '';
+const nextTone = tone();
+const ctaTone = tone() as 'day' | 'night';
+let row = 0;
+---
+<Base title={d.metaTitle} description={d.metaDescription}>
+  <PageHero eyebrow={stop.name} title={d.title} lede={d.lede} secondary={{ label: 'See pricing', href: '/pricing' }}>
+    <UiCard {...d.heroCard} />
+    <LoopStepper slot="after" current={entry.id} stops={stops} />
+  </PageHero>
+
+  {d.channels && (
+    <section class:list={['section grain', channelsTone]} aria-labelledby="ch-h">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label eyebrow">{d.channels.label}</p><h2 id="ch-h">{d.channels.title}</h2></div>
+          <p class="lede">{d.channels.body}</p>
+        </div>
+        <ul class="channels">
+          {d.channels.items.map((c) => {
+            const Icon = channelIcon[c.icon];
+            return (
+              <li>
+                <span class="ch-i"><Icon size={22} /></span>
+                <h3>{c.title}</h3>
+                <p>{c.body}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {groups.map((g, gi) => (
+    <section class:list={['section grain', groupTones[gi]]} aria-label={g.intro?.title ?? g.rows[0].label}>
+      <div class="wrap">
+        {g.intro && (
+          <div class="head intro">
+            <div><p class="label eyebrow">{g.intro.label}</p><h2>{g.intro.title}</h2></div>
+            <p class="lede">{g.intro.body}</p>
+          </div>
+        )}
+        {g.rows.map((r, ri) => {
+          const reverse = row++ % 2 === 1;
+          return (
+            <>
+              {ri > 0 && <hr class="rule split" />}
+              <FeatureRow label={r.label} tag={r.tag} title={r.title} body={r.body} bullets={r.bullets} reverse={reverse} level={g.intro ? 'h3' : 'h2'}>
+                <UiCard {...r.card} />
+              </FeatureRow>
+            </>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+
+  {d.integrations && (
+    <section class:list={['section grain', integrationsTone]} aria-labelledby="int-h">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label eyebrow">{d.integrations.label}</p><h2 id="int-h">{d.integrations.title}</h2></div>
+          <p class="lede">{d.integrations.body}</p>
+        </div>
+        <ul class="ints">{d.integrations.items.map((n) => <li>{n}</li>)}</ul>
+      </div>
+    </section>
+  )}
+
+  <section class:list={['section grain nextstop', nextTone]} aria-label="Next in the loop">
+    <div class="wrap ns">
+      <p class="label">Next in the loop</p>
+      <a href={next.url}><span class="num">0{next.order}</span> {next.name}<span class="ns-line">{next.line}</span><span class="ns-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <CtaBand tone={ctaTone} title="See NForce in action." body="A personalized walkthrough of the platform, on your use case, in 30 minutes or less." />
+</Base>
+
+<style>
+  .head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem 4rem; align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .head h2 { max-width: 18ch; }
+  .night .head .lede { color: var(--c-tint); }
+  .channels { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 1.5rem; }
+  .channels li { padding-top: 1.5rem; border-top: 1px solid rgb(16 0 140 / .16); }
+  .night .channels li { border-top-color: rgb(255 255 255 / .16); }
+  .ch-i { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 1.1rem; background: var(--c-primary); color: var(--c-white); }
+  .channels h3 { margin-bottom: .4rem; }
+  .split { margin: clamp(3rem, 6vw, 5rem) 0; }
+  .ints { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+  .ints li { padding: .7rem 1.2rem; border-radius: 99px; border: 1px solid rgb(16 0 140 / .18); background: rgb(255 255 255 / .6); color: var(--c-heading); font-weight: 400; }
+  .night .ints li { border-color: rgb(255 255 255 / .18); background: rgb(255 255 255 / .06); color: var(--c-white); }
+  .nextstop { padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .ns { display: grid; gap: 1rem; }
+  .ns a { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .25rem 1.25rem; text-decoration: none; color: var(--c-heading); font-size: var(--fs-2xl); font-weight: 600; padding-top: 1.25rem; border-top: 1px solid rgb(16 0 140 / .16); }
+  .ns .num { color: var(--c-primary); font-size: var(--fs-lg); }
+  .night .ns a { color: var(--c-white); border-top-color: rgb(255 255 255 / .16); }
+  .night .ns .num, .night .ns-arrow { color: #B9B3FF; }
+  .night .ns-line { color: var(--c-tint); }
+  .ns-line { grid-column: 2; font-size: var(--fs-md); font-weight: 300; color: var(--c-body); }
+  .ns-arrow { grid-row: 1; grid-column: 3; color: var(--c-primary); transition: transform var(--t-quick) var(--ease); }
+  .ns a:hover .ns-arrow { transform: translateX(6px); }
+  @media (max-width: 960px) { .head { grid-template-columns: 1fr; } .channels { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; } }
+  @media (max-width: 560px) { .channels { grid-template-columns: 1fr; } }
+</style>

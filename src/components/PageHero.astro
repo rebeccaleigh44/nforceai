@@ -1,0 +1,42 @@
+---
+/** Night hero for inner pages: copy left, a visual (slot) right. */
+import Arcs from './Arcs.astro';
+interface Props {
+  eyebrow: string; title: string; lede: string;
+  primary?: { label: string; href: string }; secondary?: { label: string; href: string };
+}
+const { eyebrow, title, lede, primary = { label: 'Book a demo', href: '/demo' }, secondary } = Astro.props;
+---
+<section class="ph night grain" aria-labelledby="ph-h">
+  <div class="ph-beam" aria-hidden="true"></div>
+  <div class="ph-reed reeded" aria-hidden="true"></div>
+  <Arcs class="ph-arcs" rings={9} />
+  <div class="wrap ph-grid">
+    <div class="ph-copy">
+      <p class="label eyebrow">{eyebrow}</p>
+      <h1 id="ph-h">{title}</h1>
+      <p class="ph-lede">{lede}</p>
+      <div class="ph-cta">
+        <a class="btn btn-primary" href={primary.href}>{primary.label}</a>
+        {secondary && <a class="btn btn-ghost" href={secondary.href}>{secondary.label}</a>}
+      </div>
+    </div>
+    <div class="ph-visual"><slot /></div>
+  </div>
+  <slot name="after" />
+</section>
+<style>
+  .ph { position: relative; isolation: isolate; overflow: clip; padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5.5rem); }
+  .ph-beam { position: absolute; z-index: -1; top: 0; bottom: 0; left: 66%; width: 240px; background: radial-gradient(50% 45% at 50% 30%, rgb(185 179 255 / .45), transparent 70%); filter: blur(28px); }
+  .ph-reed { position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(64% - 40px); width: calc(10% + 80px); opacity: .8; mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
+  :global(.ph-arcs) { position: absolute; z-index: -1; width: 1200px; right: -480px; top: 50%; transform: translateY(-50%); opacity: .28; }
+  .ph-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .ph h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1.05; max-width: 16ch; }
+  .ph-lede { margin-top: 1.4rem; color: var(--c-tint); font-size: clamp(1.0625rem, 1rem + .35vw, 1.25rem); line-height: 1.5; max-width: 42ch; }
+  .ph-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+  .ph-visual { width: 100%; max-width: 520px; justify-self: end; }
+  @media (max-width: 960px) {
+    .ph-grid { grid-template-columns: 1fr; }
+    .ph-visual { justify-self: start; }
+  }
+</style>

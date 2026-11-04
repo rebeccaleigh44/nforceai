@@ -1,0 +1,56 @@
+[
+  { "id": "real-estate", "name": "Real estate", "source": "Listing inquiry, Meta ad", "lead": "Dana P.", "booked": "Viewing booked: Thu 5:30 pm",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: 3-bed listing on Alder St." },
+      { "t": 4, "who": "agent", "text": "Hi Dana, it's Nova from Harbor Homes. Want to see Alder St. this week?" },
+      { "t": 11, "who": "lead", "text": "Yes! Is it still available?" },
+      { "t": 16, "who": "agent", "text": "It is. I have Thu 5:30 pm or Sat 10 am. Which works?" },
+      { "t": 22, "who": "lead", "text": "Thursday." },
+      { "t": 27, "who": "system", "text": "Calendar invite sent to Dana and agent Mark R." }
+    ] },
+  { "id": "education", "name": "Education", "source": "Program page form", "lead": "Luis M.", "booked": "Advisor call booked: Tue 4:00 pm",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: MBA evening program" },
+      { "t": 3, "who": "agent", "text": "Hi Luis, Astra from Northgate College. Starting this fall or spring?" },
+      { "t": 10, "who": "lead", "text": "Spring, probably." },
+      { "t": 15, "who": "agent", "text": "Good timing. An advisor can walk you through funding. Tue 4 pm?" },
+      { "t": 21, "who": "lead", "text": "Works for me." },
+      { "t": 26, "who": "system", "text": "Advisor call added for Luis and Priya K." }
+    ] },
+  { "id": "solar", "name": "Solar", "source": "Savings calculator", "lead": "Grace O.", "booked": "Roof survey booked: Mon 9:00 am",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: monthly bill $240" },
+      { "t": 4, "who": "agent", "text": "Hi Grace, Nova from Brightline Solar. Do you own the home?" },
+      { "t": 10, "who": "lead", "text": "Yes, 12 years." },
+      { "t": 15, "who": "agent", "text": "Great. A free roof survey takes 30 minutes. Mon 9 am?" },
+      { "t": 22, "who": "lead", "text": "Sure." },
+      { "t": 27, "who": "system", "text": "Survey booked. Address confirmed." }
+    ] },
+  { "id": "insurance", "name": "Insurance", "source": "Quote request", "lead": "Sam T.", "booked": "Quote call booked: Today 3:15 pm",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: auto policy, 2 drivers" },
+      { "t": 3, "who": "agent", "text": "Hi Sam, Astra at Keystone Cover. Renewal date coming up?" },
+      { "t": 9, "who": "lead", "text": "End of the month." },
+      { "t": 14, "who": "agent", "text": "A licensed agent can quote you today at 3:15 pm. Okay?" },
+      { "t": 20, "who": "lead", "text": "Yes please." },
+      { "t": 25, "who": "system", "text": "Call booked with licensed agent J. Ruiz." }
+    ] },
+  { "id": "clinics", "name": "Clinics", "source": "Google Ads landing page", "lead": "Mei L.", "booked": "Consult booked: Wed 11:00 am",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: dental implant consult" },
+      { "t": 4, "who": "agent", "text": "Hi Mei, Nova from Lakeside Dental. Is this for a new tooth or a replacement?" },
+      { "t": 12, "who": "lead", "text": "Replacement." },
+      { "t": 17, "who": "agent", "text": "Dr. Shah has Wed 11 am open for a consult. Shall I hold it?" },
+      { "t": 23, "who": "lead", "text": "Yes." },
+      { "t": 28, "who": "system", "text": "Consult booked. Intake form sent." }
+    ] },
+  { "id": "automotive", "name": "Automotive", "source": "Dealer site, trade-in form", "lead": "Omar B.", "booked": "Test drive booked: Sat 1:00 pm",
+    "script": [
+      { "t": 0, "who": "system", "text": "New lead: hybrid SUV, trade-in" },
+      { "t": 3, "who": "agent", "text": "Hi Omar, Astra from Ridgeway Motors. Want to test drive the hybrid?" },
+      { "t": 10, "who": "lead", "text": "Yes, this weekend." },
+      { "t": 15, "who": "agent", "text": "Sat 1 pm is free. Bring the trade-in and we'll value it on the spot." },
+      { "t": 21, "who": "lead", "text": "Perfect." },
+      { "t": 26, "who": "system", "text": "Test drive booked with sales lead A. Cole." }
+    ] }
+]

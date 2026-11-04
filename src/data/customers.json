@@ -1,0 +1,40 @@
+[
+  {
+    "id": "nester",
+    "company": "Nester Software",
+    "value": 70,
+    "prefix": "+",
+    "suffix": "%",
+    "label": "marketing ROI",
+    "team": "Sales",
+    "order": 1
+  },
+  {
+    "id": "flipo",
+    "company": "Flipo Eyewear",
+    "value": 80,
+    "suffix": "%",
+    "label": "cost reduction",
+    "team": "Support",
+    "order": 2
+  },
+  {
+    "id": "rapt",
+    "company": "Rapt Clothing",
+    "value": 5,
+    "suffix": "x",
+    "label": "faster proposals",
+    "team": "Sales",
+    "order": 3
+  },
+  {
+    "id": "ethermail",
+    "company": "Ethermail",
+    "value": 300,
+    "suffix": "+",
+    "label": "hours saved",
+    "team": "Support",
+    "note": "Figure to confirm: the current quote says \"50s of hours\".",
+    "order": 4
+  }
+]

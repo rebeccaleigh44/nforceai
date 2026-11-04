@@ -1,0 +1,22 @@
+---
+/** Concentric broken arcs: the orbit mark extended as a line field. Decorative. */
+interface Props { rings?: number; class?: string; tone?: 'light' | 'dark' }
+const { rings = 9, class: cls = '', tone = 'light' } = Astro.props;
+const stroke = tone === 'light' ? 'rgba(217,214,255,' : 'rgba(69,47,244,';
+const arr = Array.from({ length: rings }, (_, i) => i);
+---
+<svg class:list={['arcs', cls]} viewBox="0 0 1000 1000" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+  {arr.map((i) => {
+    const r = 90 + i * 48;
+    const c = 2 * Math.PI * r;
+    const gap = 0.06 + ((i * 37) % 11) / 100;
+    return (
+      <circle cx="500" cy="500" r={r}
+        stroke={`${stroke}${(0.38 - i * 0.03).toFixed(2)})`}
+        stroke-width={i === 2 ? 1.6 : 0.8}
+        stroke-dasharray={`${(c * (1 - gap)).toFixed(1)} ${(c * gap).toFixed(1)}`}
+        transform={`rotate(${(i * 53) % 360} 500 500)`} />
+    );
+  })}
+</svg>
+<style>.arcs { pointer-events: none; }</style>

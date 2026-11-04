@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Arcs from '../components/Arcs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PricingBuilder from '../components/islands/PricingBuilder';
+import RoiEstimator from '../components/islands/RoiEstimator';
+
+const items = (await getCollection('pricing')).map((e) => ({ id: e.id, ...e.data })).sort((a, b) => a.order - b.order);
+const faq = [
+  { q: 'Do you charge per message or per conversation?', a: 'No. You pay the platform fee and any modules you add. Model usage is billed by your LLM provider, on your own keys.' },
+  { q: 'Which LLM providers can I use?', a: 'Bring your own keys for the provider you already use. We will confirm supported providers on your demo.' },
+  { q: 'Can we run NForce on our own infrastructure?', a: 'Yes. Choose NForce Cloud or your own infrastructure, with tenant isolation, data residency and SSO.' },
+  { q: 'Can I add or remove modules later?', a: 'Yes. Modules are monthly, so you can add one when a team needs it.' },
+];
+---
+<Base
+  title="Pricing | NForce.AI"
+  description="$300 a month for the core platform, $100 a month per module. Bring your own LLM keys. No per-message fees."
+>
+  <section class="section night grain pr-hero" aria-labelledby="pr-h">
+    <Arcs class="pr-arcs" rings={9} />
+    <div class="wrap">
+      <div class="pr-top">
+        <div>
+          <p class="label eyebrow">Pricing</p>
+          <h1 id="pr-h">One platform fee. Modules when you need them.</h1>
+        </div>
+        <p class="lede">Start with the core platform at $300 a month. Add modules at $100 each. Your own LLM keys, and no per-message fees.</p>
+      </div>
+      <PricingBuilder client:visible items={items} />
+    </div>
+  </section>
+
+  <section class="section day grain" aria-labelledby="faq-h">
+    <div class="wrap faq-grid">
+      <div>
+        <p class="label eyebrow">Questions</p>
+        <h2 id="faq-h">Predictable by design.</h2>
+        <p class="lede faq-lede">Your bill doesn't grow with every message. It grows when you choose to add a module.</p>
+        <a class="btn btn-ghost" href="/enterprise">Enterprise and security</a>
+      </div>
+      <dl class="faq">
+        {faq.map((f) => (<div><dt>{f.q}</dt><dd>{f.a}</dd></div>))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section night grain" aria-labelledby="proi-h">
+    <div class="wrap">
+      <p class="label eyebrow">ROI estimator</p>
+      <h2 id="proi-h" class="proi-h">See what it pays back.</h2>
+      <RoiEstimator client:visible />
+    </div>
+  </section>
+
+  <CtaBand title="Get a price for your team in one call." body="We'll map your channels and volume, and show you the modules worth turning on." />
+</Base>
+<style>
+  .pr-hero { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
+  :global(.pr-arcs) { position: absolute; z-index: -1; width: 1100px; left: -500px; top: -300px; opacity: .5; }
+  .pr-top { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.25rem 4rem; align-items: end; margin-bottom: 2.5rem; }
+  .pr-top h1 { max-width: 20ch; font-size: clamp(2.25rem, 1.3rem + 2.6vw, 3.5rem); line-height: 1.1; }
+  .pr-top .eyebrow { margin-bottom: 1rem; }
+  .pr-top .lede { color: var(--c-tint); font-size: var(--fs-md); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 6vw, 6rem); }
+  .faq-lede { margin: 1.25rem 0 2rem; }
+  .faq { margin: 0; }
+  .faq div { padding: 1.35rem 0; border-top: 1px solid rgb(16 0 140 / .14); }
+  .faq div:last-child { border-bottom: 1px solid rgb(16 0 140 / .14); }
+  .faq dt { color: var(--c-heading); font-weight: 600; margin-bottom: .4rem; }
+  .faq dd { margin: 0; }
+  .proi-h { margin-bottom: 2.5rem; }
+  @media (max-width: 860px) { .pr-top, .faq-grid { grid-template-columns: 1fr; } }
+</style>

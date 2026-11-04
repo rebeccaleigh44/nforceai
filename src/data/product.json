@@ -1,0 +1,343 @@
+[
+  {
+    "id": "deploy",
+    "metaTitle": "Deploy | NForce.AI",
+    "metaDescription": "Configure and launch AI agents across WhatsApp, phone, email and web chat in minutes.",
+    "title": "Configure and launch agents in minutes",
+    "lede": "Set up your AI agents once and expose them on all the channels your customers use. In minutes, not weeks.",
+    "heroCard": {
+      "title": "Agent settings", "kind": "kv",
+      "items": [
+        { "k": "Agent name", "v": "Astra" },
+        { "k": "Agent owner", "v": "Jane D." },
+        { "k": "Agent type", "v": "E-mail" },
+        { "k": "Address", "v": "astra@nforce.bot" },
+        { "k": "Status", "v": "Live", "status": "ok" }
+      ]
+    },
+    "channels": {
+      "label": "Channels",
+      "title": "One agent, every touchpoint",
+      "body": "Deploy agents across the channels your customers already use, from a single dashboard.",
+      "items": [
+        { "icon": "whatsapp", "title": "WhatsApp", "body": "Engage customers on the world's most popular messaging platform with rich media support." },
+        { "icon": "phone", "title": "Phone", "body": "AI-powered voice agents that handle inbound and outbound calls naturally." },
+        { "icon": "email", "title": "Email", "body": "Automated email responses with context-aware threading and follow-ups." },
+        { "icon": "chat", "title": "Web chat", "body": "Embeddable chat widget for your website with customizable branding." }
+      ]
+    },
+    "intro": {
+      "label": "Instruction modes",
+      "title": "Three ways to power your agents",
+      "body": "From simple prompts to advanced context engineering and visual multi-agent orchestration. Choose the right level of control for every use case."
+    },
+    "sections": [
+      {
+        "label": "Prompts", "title": "Start simple with a managed prompt library",
+        "body": "Write and iterate on prompts with built-in version control. Every change is tracked so you can review, revert, and keep a full audit trail as your agents evolve.",
+        "bullets": [
+          { "t": "Prompt library", "d": "Organize and manage prompts across all your agents from a central library." },
+          { "t": "Version control", "d": "Every edit is tracked with a full audit trail. Review history and revert anytime." },
+          { "t": "Draft and preview", "d": "Test new prompt versions in draft mode before releasing to production." }
+        ],
+        "card": { "title": "Prompt library", "kind": "versions", "items": [
+          { "name": "Lead qualification", "v": "v12", "state": "live" },
+          { "name": "Lead qualification", "v": "v13", "state": "draft" },
+          { "name": "Billing questions", "v": "v7", "state": "live" },
+          { "name": "Out-of-hours reply", "v": "v3", "state": "live" }
+        ] }
+      },
+      {
+        "label": "Playbooks", "tag": "Built on Parlant", "title": "Control agents with precision",
+        "body": "Model composable guidelines that govern agent behavior with precision. Playbooks are inheritable, version-controlled, and support draft versions for safe testing before release.",
+        "bullets": [
+          { "t": "Composable guidelines", "d": "Build modular rules that can be mixed, matched, and inherited across agents." },
+          { "t": "Release workflow", "d": "Version-controlled releases with draft and preview stages for safe iteration." },
+          { "t": "Behavioral precision", "d": "Define nuanced agent behavior that goes beyond what prompts alone can express." }
+        ],
+        "card": { "title": "Playbook: Sales base", "kind": "rows", "items": [
+          { "name": "Always confirm the time zone", "meta": "Inherited by 4 agents", "status": "ok", "label": "Active" },
+          { "name": "Escalate refunds over $500", "meta": "Support agents", "status": "alert", "label": "Escalation" },
+          { "name": "Offer two time slots", "meta": "Booking guideline", "status": "ok", "label": "Active" },
+          { "name": "Mention annual pricing", "meta": "Draft for review", "status": "warn", "label": "Draft" }
+        ] }
+      },
+      {
+        "label": "Flows", "tag": "Built on Langflow", "title": "Build multi-agent teams visually",
+        "body": "Design multi-agent teams in a visual builder to power complex agent behavior. The same flows can also run as standalone automations, triggered via API or on a schedule.",
+        "bullets": [
+          { "t": "Multi-agent teams", "d": "Model teams of specialized agents that collaborate to handle complex tasks." },
+          { "t": "Standalone automations", "d": "Run flows as independent workflows via API triggers or scheduled jobs." },
+          { "t": "Agent tools", "d": "Expose flows as tools that your agents can call during conversations." }
+        ],
+        "card": { "title": "Flow: Quote request", "kind": "flow", "items": [
+          { "name": "Intake", "meta": "Nova" },
+          { "name": "Pricing lookup", "meta": "Tool" },
+          { "name": "Proposal draft", "meta": "Astra" },
+          { "name": "CRM update", "meta": "HubSpot" }
+        ] }
+      },
+      {
+        "label": "Knowledge", "title": "Every answer backed by your data",
+        "body": "Upload files, sync Google Drive and Notion, or crawl your website. NForce processes, chunks, and indexes everything so your agents retrieve exactly the right information.",
+        "bullets": [
+          { "t": "Multi-source ingestion", "d": "Upload files, sync Google Drive and Notion, or crawl your website, all from one dashboard." },
+          { "t": "Hybrid search", "d": "Vector similarity combined with keyword matching and AI reranking for precise retrieval." },
+          { "t": "Always current", "d": "Automatic sync keeps knowledge fresh as your source documents change." }
+        ],
+        "card": { "title": "Knowledge base", "kind": "rows", "items": [
+          { "name": "help.example.com", "meta": "Website crawl, 214 pages", "status": "ok", "label": "Synced" },
+          { "name": "Pricing 2026.pdf", "meta": "Upload, 12 pages", "status": "ok", "label": "Indexed" },
+          { "name": "Policies", "meta": "Notion, 38 pages", "status": "ok", "label": "Synced" },
+          { "name": "Sales collateral", "meta": "Google Drive, 21 files", "status": "agent", "label": "Syncing" }
+        ] }
+      },
+      {
+        "label": "Funnels", "title": "From first touch to outcome, fully automated",
+        "body": "Build structured outreach pipelines that run themselves. Define your stages, assign an AI agent, connect your CRM, and let NForce handle the rest. Leads advance through stages as work progresses, so nothing falls through the cracks.",
+        "bullets": [
+          { "t": "Two-way CRM sync", "d": "Pull leads from HubSpot, Salesforce, Zoho, or Notion, and write status updates, timestamps, and outcomes back automatically." },
+          { "t": "Smart follow-ups", "d": "Set rules for when conversations go quiet. NForce follows up on your schedule, respects business hours, and stops when limits are hit." },
+          { "t": "Real-time metrics", "d": "Track conversion rates, time per stage, final outcomes, and follow-up effectiveness across every funnel." },
+          { "t": "Ready-made templates", "d": "Start from templates for chat outreach, phone outreach, or task workflows, then customize stages to fit your process." }
+        ],
+        "card": { "title": "Funnel: Inbound leads", "kind": "stages", "items": [
+          { "name": "New", "count": "1,240", "w": 1 },
+          { "name": "Contacted", "count": "1,198", "w": 0.96 },
+          { "name": "Qualified", "count": "612", "w": 0.49 },
+          { "name": "Meeting booked", "count": "287", "w": 0.23 }
+        ] }
+      }
+    ],
+    "integrations": {
+      "label": "Integrations",
+      "title": "Connect the tools your team already uses",
+      "body": "Agents plug into your existing stack out of the box. CRMs, calendars, knowledge bases and more, with no custom development needed.",
+      "items": ["Salesforce", "HubSpot", "Google Drive", "Google Calendar", "Gmail", "Outlook", "Zoho", "Notion", "Dropbox", "Twenty"]
+    }
+  },
+  {
+    "id": "operate",
+    "metaTitle": "Operate | NForce.AI",
+    "metaDescription": "Monitor, intervene, and manage your AI agents in real time, across every channel.",
+    "title": "Stay in control of every conversation",
+    "lede": "Monitor, intervene, and manage your AI agents in real time, across every channel, from a single inbox.",
+    "heroCard": {
+      "title": "Inbox", "kind": "rows",
+      "items": [
+        { "name": "Enterprise plan upgrade discussion", "meta": "Astra · Email · 24 Feb", "status": "ok", "label": "Demo scheduled" },
+        { "name": "Data migration assistance", "meta": "Astra · Email · 18 Feb", "status": "alert", "label": "Needs attention", "action": "Take over" },
+        { "name": "Post-demo feedback loop", "meta": "Nova · WhatsApp · 18 Feb", "status": "ok", "label": "Ticket resolved" }
+      ]
+    },
+    "sections": [
+      {
+        "label": "Conversations", "title": "A unified inbox for every agent interaction",
+        "body": "See every conversation across every channel in one place. Monitor what your agents are saying in real time, review full transcripts, and never lose track of a customer interaction.",
+        "bullets": [
+          { "t": "Unified inbox", "d": "All conversations from every channel (WhatsApp, phone, email, web chat) in one view." },
+          { "t": "Real-time monitoring", "d": "Watch agent conversations as they happen with live message streaming." },
+          { "t": "Full transcripts", "d": "Review complete conversation history with timestamps and metadata." },
+          { "t": "Multilingual", "d": "Agents converse in any language. Translate messages inline to follow along without switching tools." }
+        ],
+        "card": { "title": "Conversation · WhatsApp", "kind": "chat", "items": [
+          { "who": "contact", "text": "Can you confirm the integration supports custom fields?" },
+          { "who": "agent", "text": "It does. Custom fields sync both ways with your CRM." },
+          { "who": "contact", "text": "Perfect, thank you!" }
+        ] }
+      },
+      {
+        "label": "Smart filters and tags", "title": "Zero in on the conversations that matter",
+        "body": "AI-powered smart tags automatically categorize conversations by topic, sentiment, and intent. Combine them with powerful filters to find exactly what you're looking for in seconds.",
+        "bullets": [
+          { "t": "Smart tags", "d": "AI automatically labels conversations by topic, sentiment, urgency, and custom categories." },
+          { "t": "Advanced filters", "d": "Combine tags, channels, agents, date ranges, and status to find any conversation instantly." },
+          { "t": "Saved views", "d": "Create and share custom filter presets for common workflows." }
+        ],
+        "card": { "title": "Filters · 18 Feb to 25 Feb", "kind": "chips", "items": [
+          { "name": "Demo scheduled", "count": "24", "status": "ok" },
+          { "name": "Ticket resolved", "count": "31", "status": "ok" },
+          { "name": "Needs attention", "count": "9", "status": "alert" },
+          { "name": "Pricing question", "count": "17" },
+          { "name": "Negative sentiment", "count": "6", "status": "warn" },
+          { "name": "Spanish", "count": "12" }
+        ] }
+      },
+      {
+        "label": "Human in the loop", "title": "Jump in when it matters most",
+        "body": "You're always in control. Jump into any conversation with a single click, or let agents flag situations that need human judgment. Full context is kept, so nothing gets lost in the handoff.",
+        "bullets": [
+          { "t": "One-click takeover", "d": "Switch from AI to human control mid-conversation, with no awkward transitions." },
+          { "t": "Proactive escalation", "d": "Agents raise alerts when they hit edge cases, detect frustration, or face uncertain situations." },
+          { "t": "Smart routing", "d": "Send escalations to the right person based on topic, language, or priority." },
+          { "t": "Configurable triggers", "d": "Set escalation rules based on sentiment, keywords, conversation length, or custom conditions." }
+        ],
+        "card": { "title": "Escalation · Data migration assistance", "kind": "chat", "banner": "Astra flagged this conversation: export request outside policy.", "items": [
+          { "who": "contact", "text": "Is there a way to export our data in CSV format?" },
+          { "who": "agent", "text": "Let me bring in a teammate who can set that up for you." },
+          { "who": "you", "text": "Hi, I'm Jane. I can send you a CSV export today." }
+        ] }
+      }
+    ]
+  },
+  {
+    "id": "measure",
+    "metaTitle": "Measure | NForce.AI",
+    "metaDescription": "Track conversations, measure KPIs, and tie agent activity directly to revenue and cost savings.",
+    "title": "Prove the impact of every agent",
+    "lede": "Track conversations, measure KPIs, and tie agent activity directly to revenue and cost savings, all from one dashboard.",
+    "heroCard": {
+      "title": "Financial impact · 18 to 24 Feb", "kind": "bars",
+      "items": [
+        { "name": "Feb 18", "value": "$85", "w": 0.22 },
+        { "name": "Feb 19", "value": "$250", "w": 0.66 },
+        { "name": "Feb 20", "value": "$380", "w": 1 },
+        { "name": "Feb 21", "value": "$315", "w": 0.83 },
+        { "name": "Feb 22", "value": "$150", "w": 0.39 },
+        { "name": "Feb 23", "value": "$340", "w": 0.89 },
+        { "name": "Feb 24", "value": "$60", "w": 0.16 }
+      ],
+      "note": "$600 revenue · $980 cost savings"
+    },
+    "sections": [
+      {
+        "label": "Conversation metrics", "title": "See the full picture at a glance",
+        "body": "Track every conversation and call across all channels. See volume trends, inbound vs. outbound splits, response rates, and more, updated in real time.",
+        "bullets": [
+          { "t": "Volume tracking", "d": "Monitor total conversations and calls across all channels over any time period." },
+          { "t": "Inbound vs. outbound", "d": "Break down activity by direction to understand demand patterns." },
+          { "t": "Response rates", "d": "Track how quickly and consistently agents engage with customers." }
+        ],
+        "card": { "title": "Conversations by channel", "kind": "bars", "items": [
+          { "name": "WhatsApp", "value": "1,184", "w": 1 },
+          { "name": "Web chat", "value": "862", "w": 0.73 },
+          { "name": "Email", "value": "540", "w": 0.46 },
+          { "name": "Phone", "value": "318", "w": 0.27 }
+        ] }
+      },
+      {
+        "label": "KPI tracking", "title": "Measure what matters",
+        "body": "Define custom KPIs by flagging smart tags as key performance indicators. Track them over time and see exactly how your agents are moving the needle on the metrics you care about.",
+        "bullets": [
+          { "t": "Tag-based KPIs", "d": "Flag any smart tag as a KPI to turn conversation signals into measurable outcomes." },
+          { "t": "Custom definitions", "d": "Define KPIs that match your business: appointments booked, issues resolved, leads qualified." },
+          { "t": "Trend analysis", "d": "Track KPI performance over time to spot improvements and regressions." }
+        ],
+        "card": { "title": "KPI events this week", "kind": "bars", "items": [
+          { "name": "Ticket resolved", "value": "31", "w": 1 },
+          { "name": "Demo scheduled", "value": "24", "w": 0.77 },
+          { "name": "Lead qualified", "value": "19", "w": 0.61 },
+          { "name": "Needs attention", "value": "9", "w": 0.29 }
+        ] }
+      },
+      {
+        "label": "Financial impact", "title": "Quantify your AI's ROI",
+        "body": "See the revenue generated and costs saved by your agents, broken down by KPI event. No more guessing whether AI is delivering. The numbers speak for themselves.",
+        "bullets": [
+          { "t": "Revenue attribution", "d": "See the revenue associated with each KPI event your agents trigger." },
+          { "t": "Cost savings", "d": "Quantify how much agents save by automating conversations that would otherwise need people." },
+          { "t": "ROI dashboards", "d": "Present clear, stakeholder-ready reports that prove the value of your AI investment." }
+        ],
+        "card": { "title": "Attributed this week", "kind": "kv", "items": [
+          { "k": "Revenue", "v": "$600", "status": "ok" },
+          { "k": "Cost savings", "v": "$980", "status": "ok" },
+          { "k": "Top KPI", "v": "Demo scheduled" },
+          { "k": "Hours handled", "v": "64 h" }
+        ] }
+      },
+      {
+        "label": "Agent performance", "title": "Spot your top performers",
+        "body": "See how each agent stacks up: conversations handled, KPIs hit, and financial impact, in one table. Identify top performers and surface agents that need attention.",
+        "bullets": [
+          { "t": "Per-agent breakdown", "d": "Conversations, KPIs, and financial impact for every agent in one view." },
+          { "t": "Comparative analysis", "d": "Rank and compare agents to see what's working and replicate it." },
+          { "t": "Actionable insights", "d": "Spot underperforming agents early and make data-driven configuration changes." }
+        ],
+        "card": { "title": "Agent performance", "kind": "table", "items": [
+          { "name": "Astra", "a": "1,204", "b": "41", "c": "$820" },
+          { "name": "Nova", "a": "986", "b": "33", "c": "$610" },
+          { "name": "Orion", "a": "412", "b": "9", "c": "$150" }
+        ], "cols": ["Agent", "Convos", "KPIs", "Impact"] }
+      }
+    ]
+  },
+  {
+    "id": "optimize",
+    "metaTitle": "Optimize | NForce.AI",
+    "metaDescription": "Test, iterate, and improve your AI agents continuously with automated testing.",
+    "title": "Test, iterate, and improve continuously",
+    "lede": "Flag what's wrong, build test cases, ship safe fixes, and prove they work, all without touching production.",
+    "heroCard": {
+      "title": "Test run · Support suite", "kind": "tests",
+      "items": [
+        { "name": "Refund over limit escalates", "result": "pass" },
+        { "name": "Order status uses tracking tool", "result": "pass" },
+        { "name": "Replies in customer's language", "result": "pass" },
+        { "name": "CSV export request", "result": "fail" }
+      ],
+      "note": "3 of 4 passed · draft v13"
+    },
+    "sections": [
+      {
+        "label": "Flag and report", "title": "Turn every bad conversation into a test case",
+        "body": "Review real conversations, flag the ones that went wrong, and describe the issue. Each flag automatically generates a test case, so every problem you catch becomes a permanent check against future regressions.",
+        "bullets": [
+          { "t": "Conversation flagging", "d": "Flag any conversation directly from the inbox with a description of what went wrong." },
+          { "t": "Auto-generated test cases", "d": "Each flag produces a ready-to-run test case based on the real conversation." },
+          { "t": "Issue categorization", "d": "Tag issues by type (wrong answer, missed intent, tone, tool failure) to spot patterns." }
+        ],
+        "card": { "title": "Flagged conversations", "kind": "rows", "items": [
+          { "name": "Data migration assistance", "meta": "Missed intent", "status": "alert", "label": "Test created" },
+          { "name": "Annual plan pricing", "meta": "Wrong answer", "status": "alert", "label": "Test created" },
+          { "name": "Delivery delay apology", "meta": "Tone", "status": "warn", "label": "In review" }
+        ] }
+      },
+      {
+        "label": "Test suites", "title": "Comprehensive testing for every scenario",
+        "body": "Build and manage test suites that cover everything from conversational flow and tone to tool calls and API interactions. Use real request and response pairs, or mock data to test edge cases with confidence.",
+        "bullets": [
+          { "t": "End-to-end scenarios", "d": "Test full conversational flows from first message to resolution." },
+          { "t": "Tool call validation", "d": "Verify agents call the right tools with the right parameters at the right time." },
+          { "t": "Real and mock data", "d": "Use actual API responses for realism, or mock data to test edge cases and failure modes." },
+          { "t": "Organized suites", "d": "Group test cases by agent, feature, or scenario for structured regression testing." }
+        ],
+        "card": { "title": "Test suites", "kind": "rows", "items": [
+          { "name": "Support suite", "meta": "Nova · 48 cases", "status": "ok", "label": "Passing" },
+          { "name": "Booking flows", "meta": "Astra · 31 cases", "status": "ok", "label": "Passing" },
+          { "name": "Pricing answers", "meta": "Astra · 12 cases", "status": "alert", "label": "1 failing" }
+        ] }
+      },
+      {
+        "label": "Draft and revise", "title": "Iterate safely without breaking production",
+        "body": "Publish draft versions of prompts and playbooks to experiment freely. Test changes by hand or trigger automated test runs, then promote to production only when you're confident.",
+        "bullets": [
+          { "t": "Draft versions", "d": "Create draft prompts and playbooks that run in isolation without affecting live agents." },
+          { "t": "Manual testing", "d": "Chat with draft agents directly to verify behavior before committing changes." },
+          { "t": "Automated test runs", "d": "Trigger your test suites against draft versions to validate at scale." },
+          { "t": "One-click promotion", "d": "Promote drafts to production once tests pass, with full version history to roll back." }
+        ],
+        "card": { "title": "Prompt: Billing questions", "kind": "versions", "items": [
+          { "name": "Adds CSV export answer", "v": "v8", "state": "draft" },
+          { "name": "Current production", "v": "v7", "state": "live" },
+          { "name": "Tone update", "v": "v6", "state": "archived" }
+        ] }
+      },
+      {
+        "label": "Run and validate", "title": "Prove every fix before it ships",
+        "body": "Run full test suites that simulate and replay conversations end to end. Catch regressions before they reach customers and know that every change makes your agents better, not worse.",
+        "bullets": [
+          { "t": "Conversation replay", "d": "Re-run real conversations against updated agents to verify better outcomes." },
+          { "t": "Regression detection", "d": "Automatically compare results across versions to catch unintended side effects." },
+          { "t": "Pass/fail reporting", "d": "Clear test results with detailed diffs showing exactly what changed." },
+          { "t": "Continuous improvement", "d": "Run suites on every change to build a habit of testing and measurable progress." }
+        ],
+        "card": { "title": "Run · v8 vs v7", "kind": "tests", "items": [
+          { "name": "CSV export request", "result": "pass" },
+          { "name": "Refund over limit escalates", "result": "pass" },
+          { "name": "Invoice copy request", "result": "pass" },
+          { "name": "Plan downgrade", "result": "pass" }
+        ], "note": "4 of 4 passed · ready to promote" }
+      }
+    ]
+  }
+]

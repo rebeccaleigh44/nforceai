@@ -1,0 +1,78 @@
+---
+/**
+ * WebGL light field, hero only. The CSS night gradient underneath is the static
+ * fallback; the canvas fades in after its first frame. Reduced motion draws one
+ * still frame. Rendering pauses off-screen and in background tabs.
+ */
+---
+<canvas class="hero-gl" aria-hidden="true"></canvas>
+<style>
+  .hero-gl { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: 0; transition: opacity 1.2s ease; }
+  .hero-gl.ready { opacity: 1; }
+</style>
+<script>
+  const FRAG = `precision mediump float;
+uniform vec2 r; uniform float t;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+ return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+void main(){
+ vec2 uv=gl_FragCoord.xy/r; float a=r.x/r.y; vec2 p=vec2(uv.x*a,uv.y);
+ vec3 c=mix(vec3(.055,.04,.29),vec3(.027,.024,.122),uv.y);
+ float bx=(.71+.015*sin(t*.11))*a;
+ float beam=exp(-pow((p.x-bx)*10.,2.))*(.25+.75*smoothstep(.0,1.,uv.y));
+ float halo=exp(-pow((p.x-bx)*1.8,2.))*(.4+.6*uv.y);
+ float w=n(vec2(p.x*1.3+t*.025,t*.04))*.28+n(vec2(p.x*3.1-t*.02,1.))*.08;
+ float band=smoothstep(.62+w,.0,uv.y);
+ vec3 cob=vec3(.18,.23,1.), vio=vec3(.27,.18,.96);
+ c+=vio*halo*.55;
+ c+=vec3(.78,.78,1.)*beam*.5;
+ c+=mix(cob,vio,smoothstep(.2,.9,uv.x))*band*.6;
+ c+=vec3(.016,.71,.83)*exp(-pow((p.x-bx+.05)*26.,2.))*.06*uv.y;
+ c+=vec3(.98,.25,.25)*exp(-pow(length(p-vec2(a*.97,.06))*4.,2.))*.05;
+ c+=(h(gl_FragCoord.xy*.73+fract(t*.7))-.5)*.045;
+ gl_FragColor=vec4(c,1.);
+}`;
+  const VERT = `attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+
+  function initHeroField() {
+    const cv = document.querySelector<HTMLCanvasElement>('.hero-gl');
+    if (!cv || cv.dataset.ready) return;
+    cv.dataset.ready = '1';
+    const start = () => {
+      const gl = cv.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
+      if (!gl) return; // static CSS fallback stays
+      const sh = (type: number, src: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, src); gl.compileShader(s); return s; };
+      const pr = gl.createProgram()!;
+      gl.attachShader(pr, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(pr);
+      if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+      gl.useProgram(pr);
+      const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const uR = gl.getUniformLocation(pr, 'r'), uT = gl.getUniformLocation(pr, 't');
+      const scale = Math.min(devicePixelRatio, 1.5) * 0.5; // soft field: half resolution is plenty
+      const size = () => { cv.width = Math.max(1, cv.clientWidth * scale); cv.height = Math.max(1, cv.clientHeight * scale); gl.viewport(0, 0, cv.width, cv.height); };
+      size();
+      const draw = (s: number) => { gl.uniform2f(uR, cv.width, cv.height); gl.uniform1f(uT, s); gl.drawArrays(gl.TRIANGLES, 0, 3); };
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      draw(20); cv.classList.add('ready');
+      addEventListener('resize', () => { size(); if (reduce) draw(20); });
+      if (reduce) return;
+      let vis = true, last = 0, raf = 0;
+      new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis) loop(performance.now()); }).observe(cv);
+      const t0 = performance.now() - 20000;
+      function loop(now: number) {
+        cancelAnimationFrame(raf);
+        if (!vis || document.hidden || !cv!.isConnected) return;
+        if (now - last > 33) { draw((now - t0) / 1000); last = now; } // ~30fps; motion is slow
+        raf = requestAnimationFrame(loop);
+      }
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) loop(performance.now()); });
+      loop(performance.now());
+    };
+    ('requestIdleCallback' in window ? requestIdleCallback : (f: () => void) => setTimeout(f, 200))(start);
+  }
+  document.addEventListener('astro:page-load', initHeroField);
+</script>

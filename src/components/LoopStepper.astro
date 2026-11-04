@@ -1,0 +1,35 @@
+---
+/** The orbit as navigation: the four product stops on an arc, current one lit. */
+interface Props { current: string; stops: { id: string; name: string; url: string; verb: string }[] }
+const { current, stops } = Astro.props;
+---
+<nav class="ls wrap" aria-label="The NForce loop">
+  <svg class="ls-arc" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 Q 500 -40 1000 70" fill="none" stroke="rgba(217,214,255,.35)" stroke-width="1" stroke-dasharray="6 6" vector-effect="non-scaling-stroke" />
+  </svg>
+  <ol>
+    {stops.map((s, i) => (
+      <li class={s.id === current ? 'on' : ''}>
+        <a href={s.url} aria-current={s.id === current ? 'page' : undefined}>
+          <span class="ls-dot" aria-hidden="true"></span>
+          <span class="ls-n num">0{i + 1}</span>
+          <span class="ls-name">{s.name}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .ls { position: relative; margin-top: clamp(3rem, 6vw, 5rem); }
+  .ls-arc { position: absolute; left: var(--gutter); right: var(--gutter); width: calc(100% - 2 * var(--gutter)); top: -6px; height: 60px; }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  li:nth-child(2), li:nth-child(3) { transform: translateY(-26px); }
+  a { display: grid; justify-items: center; gap: .35rem; text-decoration: none; color: var(--c-lilac); padding: .5rem; border-radius: var(--r-md); }
+  a:hover { color: var(--c-white); }
+  .ls-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c-night1); border: 1.5px solid var(--c-lilac); }
+  .on .ls-dot { width: 16px; height: 16px; background: var(--c-white); border: 4px solid var(--c-primary); box-shadow: 0 0 0 6px rgb(255 255 255 / .12); }
+  .ls-n { font-size: var(--fs-xs); }
+  .ls-name { font-size: var(--fs-md); font-weight: 500; }
+  .on a { color: var(--c-white); }
+  @media (max-width: 600px) { li:nth-child(2), li:nth-child(3) { transform: translateY(-14px); } .ls-name { font-size: var(--fs-sm); } }
+</style>

@@ -1,0 +1,28 @@
+.df { display: grid; gap: 1.5rem; }
+.df-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; }
+.df .full { grid-column: 1 / -1; }
+.df textarea.input { resize: vertical; min-height: 96px; }
+.df select.input { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10'><path d='M1.5 3.5 5 7l3.5-3.5' stroke='%2310008C' stroke-width='1.4' fill='none'/></svg>"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.25rem; }
+.opt { color: var(--c-slate2); font-weight: 300; }
+.df-err { color: #C21F1F; font-size: var(--fs-xs); font-weight: 400; }
+.input[aria-invalid="true"] { border-color: #C21F1F; }
+.df-phone { display: grid; grid-template-columns: 7.5rem 1fr; gap: .5rem; }
+.cp { position: relative; }
+.cp-in { font-variant-numeric: tabular-nums; }
+.cp-list {
+  position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; width: 18rem; max-height: 16rem; overflow: auto;
+  list-style: none; margin: 0; padding: .35rem; background: var(--c-white); border-radius: var(--r-md);
+  box-shadow: 0 20px 50px -20px rgb(16 0 140 / .4); border: 1px solid rgb(16 0 140 / .12);
+}
+.cp-list li { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .6rem; border-radius: var(--r-sm); cursor: pointer; color: var(--c-heading); font-size: var(--fs-sm); font-weight: 400; }
+.cp-list li[aria-selected="true"] { background: var(--c-tint); }
+.cp-list li.cur { font-weight: 600; }
+.cp-list .num { color: var(--c-body); }
+.cp-none { color: var(--c-body) !important; cursor: default !important; }
+.df-est { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; padding: 1rem 1.15rem; border-radius: var(--r-md); background: var(--c-tint); border: 1px solid rgb(69 47 244 / .2); color: var(--c-heading); font-weight: 400; font-size: var(--fs-sm); }
+.df-est .label { margin-bottom: .25rem; color: var(--c-primary); }
+.df-x { background: none; border: 0; color: var(--c-primary); cursor: pointer; text-decoration: underline; font-size: var(--fs-xs); flex: none; min-height: 32px; }
+.df-foot { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.df-legal { font-size: var(--fs-xs); color: var(--c-slate2); max-width: 36ch; }
+.df-done { display: grid; gap: .75rem; padding: 1rem 0; }
+@media (max-width: 640px) { .df-grid { grid-template-columns: 1fr; } }

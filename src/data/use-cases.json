@@ -1,0 +1,190 @@
+[
+  {
+    "id": "sales",
+    "order": 1,
+    "name": "Sales",
+    "eyebrow": "Sales and pre-sales",
+    "metaTitle": "AI Agents for Sales and Pre-Sales | NForce.AI",
+    "metaDescription": "AI agents that qualify leads, answer product questions, follow up relentlessly, and book meetings.",
+    "title": "Turn every conversation into pipeline",
+    "lede": "AI agents that qualify leads, answer product questions, follow up relentlessly, and book meetings, so your team focuses on closing.",
+    "problem": {
+      "title": "Your best leads are going cold while reps play catch-up",
+      "body": "Leads expect instant responses but reps are buried in follow-ups, data entry, and scheduling. By the time they respond, the window has closed. AI agents change the equation entirely.",
+      "stats": [
+        { "value": "<1 min", "label": "Average time to first response" },
+        { "value": "50%", "label": "Lead response rate, day and night" },
+        { "value": "24/7", "label": "Coverage across every channel" },
+        { "value": "70%+", "label": "Less time on repetitive outreach" }
+      ]
+    },
+    "features": {
+      "title": "Built for every stage of the funnel",
+      "items": [
+        { "title": "Lead qualification", "body": "Agents engage every inbound lead instantly, ask the right questions, score fit against your ICP, and route hot prospects to the right rep." },
+        { "title": "Smart follow-ups", "body": "Multi-channel follow-ups via WhatsApp, email, and SMS. Personalized, well-timed, and persistent without being pushy." },
+        { "title": "Product Q&A", "body": "Agents pull from your knowledge base to answer product questions, handle objections, and guide prospects to the right solution." },
+        { "title": "Demo booking", "body": "Check real-time calendar availability, book meetings, sync to your CRM, and send confirmations and reminders automatically." }
+      ]
+    },
+    "impact": {
+      "title": "The impact on your sales pipeline",
+      "stats": [
+        { "value": "80%", "label": "Faster lead response time" },
+        { "value": "3x", "label": "More qualified meetings booked" },
+        { "value": "60%", "label": "Lower cost per qualified lead" },
+        { "value": "24/7", "label": "Pipeline generation, even after hours" }
+      ]
+    },
+    "sample": {
+      "channel": "chat", "contact": "Maya R.", "company": "Brightpath Labs", "agent": "Astra", "outcome": "Demo scheduled",
+      "lines": [
+        { "who": "contact", "text": "Does NForce work with HubSpot?" },
+        { "who": "agent", "text": "Yes, two-way sync. How many inbound leads do you get a month?" },
+        { "who": "contact", "text": "Around 3,000." },
+        { "who": "agent", "text": "Then a 20-minute demo is worth it. Thursday at 2 pm?" }
+      ]
+    }
+  },
+  {
+    "id": "customer-support",
+    "order": 2,
+    "name": "Customer Support",
+    "eyebrow": "Customer support",
+    "metaTitle": "AI Agents for Customer Support | NForce.AI",
+    "metaDescription": "AI agents that handle common inquiries, troubleshoot issues, and escalate with full context.",
+    "title": "Resolve tickets instantly, at scale",
+    "lede": "AI agents that handle common inquiries, troubleshoot issues, and escalate with full context, so your support team focuses on what matters.",
+    "problem": {
+      "title": "Ticket volumes are growing but your team isn't",
+      "body": "Customers expect instant answers but agents are buried in repetitive tickets. Wait times climb, CSAT drops, and scaling means hiring. Until now.",
+      "stats": [
+        { "value": "70%", "label": "Tickets resolved without a human" },
+        { "value": "<10s", "label": "Average first response time" },
+        { "value": "24/7", "label": "Support across every channel" },
+        { "value": "50%", "label": "Reduction in support costs" }
+      ]
+    },
+    "features": {
+      "title": "AI-first support that feels human",
+      "items": [
+        { "title": "Instant resolution", "body": "Agents resolve common issues on the spot: password resets, order tracking, account changes, billing questions. No queue, no wait." },
+        { "title": "Knowledge-powered answers", "body": "Pull accurate, consistent answers from your help center, docs, and FAQs. Every customer gets the same quality response." },
+        { "title": "Smart escalation", "body": "When AI can't resolve an issue, it routes to the right human agent with full conversation history and suggested next steps." },
+        { "title": "Multilingual support", "body": "Serve customers in their preferred language without maintaining separate teams. Agents translate and respond natively." }
+      ]
+    },
+    "impact": {
+      "title": "The impact on your support operation",
+      "stats": [
+        { "value": "95%", "label": "Customer satisfaction maintained" },
+        { "value": "85%", "label": "Faster average resolution time" },
+        { "value": "50%", "label": "Lower cost per ticket" },
+        { "value": "10x", "label": "More tickets handled without hiring" }
+      ]
+    },
+    "sample": {
+      "channel": "whatsapp", "contact": "Leo M.", "company": "Fernway Outdoor", "agent": "Nova", "outcome": "Ticket resolved",
+      "lines": [
+        { "who": "contact", "text": "My order 4471 still says processing." },
+        { "who": "agent", "text": "It shipped this morning. Delivery is Thursday." },
+        { "who": "contact", "text": "Can I change the address?" },
+        { "who": "agent", "text": "Done. Updated tracking is on its way." }
+      ]
+    }
+  },
+  {
+    "id": "appointment-setting",
+    "order": 3,
+    "name": "Appointment Setting",
+    "eyebrow": "Appointment setting",
+    "metaTitle": "AI Agents for Appointment Setting | NForce.AI",
+    "metaDescription": "AI agents that reach out, qualify prospects, handle scheduling back-and-forth, and book confirmed appointments.",
+    "title": "Fill your calendar without lifting a finger",
+    "lede": "AI agents that reach out, qualify prospects, handle scheduling back-and-forth, and book confirmed appointments, across every channel.",
+    "problem": {
+      "title": "Scheduling is eating your team's selling time",
+      "body": "Reps spend hours chasing prospects for a time that works, juggling calendars, and dealing with no-shows. Every missed appointment is lost revenue.",
+      "stats": [
+        { "value": "5x", "label": "More appointments booked per rep" },
+        { "value": "<2 min", "label": "Average time from contact to booking" },
+        { "value": "40%", "label": "Fewer no-shows with smart reminders" },
+        { "value": "24/7", "label": "Scheduling across every time zone" }
+      ]
+    },
+    "features": {
+      "title": "From outreach to confirmed booking",
+      "items": [
+        { "title": "Outbound outreach", "body": "Agents proactively reach out to leads via WhatsApp, email, or phone to start the booking conversation." },
+        { "title": "Scheduling negotiation", "body": "Handle the back-and-forth of finding a time that works: checking availability, proposing slots, and confirming in real time." },
+        { "title": "Reminders and follow-up", "body": "Send confirmations, reminders before the meeting, and automatic follow-ups for rescheduling if a prospect goes quiet." },
+        { "title": "Calendar and CRM sync", "body": "Book directly into Google Calendar or Outlook, create CRM records, and update deal stages, all automatically." }
+      ]
+    },
+    "impact": {
+      "title": "The impact on your appointment pipeline",
+      "stats": [
+        { "value": "5x", "label": "More appointments booked" },
+        { "value": "60%", "label": "Higher show-up rate" },
+        { "value": "70%", "label": "Lower cost per appointment" },
+        { "value": "90%", "label": "Less time spent on scheduling" }
+      ]
+    },
+    "sample": {
+      "channel": "phone", "contact": "Grace O.", "company": "Lakeside Dental", "agent": "Nova", "outcome": "Appointment booked",
+      "lines": [
+        { "who": "agent", "text": "Hi Grace, it's Nova from Lakeside Dental. You asked about a cleaning?" },
+        { "who": "contact", "text": "Yes, sometime next week." },
+        { "who": "agent", "text": "Tuesday 9 am or Wednesday 4 pm are open." },
+        { "who": "contact", "text": "Wednesday works." }
+      ]
+    }
+  },
+  {
+    "id": "hr-it-helpdesk",
+    "order": 4,
+    "name": "HR and IT Helpdesk",
+    "eyebrow": "HR and IT helpdesk",
+    "metaTitle": "AI Agents for HR and IT Helpdesk | NForce.AI",
+    "metaDescription": "AI agents that handle routine HR and IT requests, from password resets to leave policies.",
+    "title": "Instant answers for every employee",
+    "lede": "AI agents that handle routine HR and IT requests, from password resets to leave policies, so your internal teams can focus on strategic work.",
+    "problem": {
+      "title": "Your HR and IT teams are drowning in repetitive requests",
+      "body": "Employees wait hours for password resets, policy clarifications, and onboarding help. Meanwhile, your HR and IT staff spend most of their day on questions they've answered a hundred times.",
+      "stats": [
+        { "value": "80%", "label": "Requests resolved without a human" },
+        { "value": "<30s", "label": "Average response time" },
+        { "value": "95%", "label": "Employee satisfaction score" },
+        { "value": "60%", "label": "Less time on routine requests" }
+      ]
+    },
+    "features": {
+      "title": "One agent for every internal request",
+      "items": [
+        { "title": "IT support", "body": "Password resets, VPN setup, software access requests, and troubleshooting guides, resolved instantly without a ticket." },
+        { "title": "HR policy Q&A", "body": "Agents answer questions about leave policies, benefits, expenses, and company procedures from your internal knowledge base." },
+        { "title": "Onboarding assistance", "body": "Guide new hires through setup checklists, tool access, policy acknowledgments, and first-week orientation, step by step." },
+        { "title": "Smart ticketing", "body": "When an issue needs human attention, agents create a ticket with full context and route it to the right team automatically." }
+      ]
+    },
+    "impact": {
+      "title": "The impact on your internal operations",
+      "stats": [
+        { "value": "85%", "label": "Faster internal request resolution" },
+        { "value": "3x", "label": "More requests handled per staff member" },
+        { "value": "50%", "label": "Lower helpdesk operating costs" },
+        { "value": "24/7", "label": "Employee support across time zones" }
+      ]
+    },
+    "sample": {
+      "channel": "chat", "contact": "Sam K.", "company": "Internal helpdesk", "agent": "Astra", "outcome": "Request resolved",
+      "lines": [
+        { "who": "contact", "text": "I'm locked out of the VPN." },
+        { "who": "agent", "text": "I've sent a reset link to your work phone. Try again in a minute." },
+        { "who": "contact", "text": "Works now. How many vacation days do I have left?" },
+        { "who": "agent", "text": "You have 9 days left this year." }
+      ]
+    }
+  }
+]

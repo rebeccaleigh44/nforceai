@@ -1,0 +1,24 @@
+.roi { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: start; }
+.roi-in { display: grid; gap: 1.4rem; padding: 1.75rem; border-radius: var(--r-lg); background: rgb(255 255 255 / .06); border: 1px solid rgb(255 255 255 / .14); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.roi-mode { display: inline-flex; padding: 4px; border-radius: 99px; background: rgb(255 255 255 / .06); border: 1px solid rgb(255 255 255 / .12); justify-self: start; }
+.roi-mode button { border: 0; background: transparent; color: var(--c-tint); padding: .5rem 1rem; border-radius: 99px; cursor: pointer; font-size: var(--fs-sm); min-height: 40px; }
+.roi-mode button[aria-pressed="true"] { background: var(--c-white); color: var(--c-heading); font-weight: 500; }
+.roi-fh { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.roi-fh output { color: var(--c-white); font-size: var(--fs-md); }
+.roi input[type="range"] { accent-color: #8F82FF; }
+.roi-adv summary { cursor: pointer; font-size: var(--fs-sm); color: var(--c-lilac); padding: .25rem 0; }
+.roi-adv[open] { display: grid; gap: 1.2rem; }
+.roi-out { display: grid; gap: 1.5rem; align-content: start; }
+.roi-big { position: relative; }
+.roi-bn { font-size: clamp(4.5rem, 2rem + 9vw, 10rem); line-height: .9; color: var(--c-white); letter-spacing: -.03em; }
+.roi-bn .roi-u { font-size: .4em; color: #B9B3FF; margin-left: .05em; }
+.roi-bl { font-size: var(--fs-lg); color: var(--c-tint); margin-top: .5rem; }
+.roi-kv { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 0; border-top: 1px solid rgb(255 255 255 / .14); }
+.roi-kv div { padding: .9rem 0; border-bottom: 1px solid rgb(255 255 255 / .14); }
+.roi-kv div:nth-child(odd) { padding-right: 1rem; }
+.roi-kv dt { font-size: var(--fs-xs); color: var(--c-lilac); }
+.roi-kv dd { margin: .15rem 0 0; color: var(--c-white); font-size: var(--fs-lg); }
+.roi-was { text-decoration: line-through; text-decoration-color: var(--c-coral); opacity: .75; }
+.roi-out .btn { justify-self: start; }
+.roi-note { font-size: var(--fs-xs); color: var(--c-lilac); max-width: 52ch; }
+@media (max-width: 900px) { .roi { grid-template-columns: 1fr; } }

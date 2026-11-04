@@ -1,0 +1,6 @@
+[
+  { "id": "deploy", "order": 1, "name": "Deploy", "verb": "Set up", "line": "Give an agent a name, a role and its channels. Live in an afternoon.", "url": "/product/deploy" },
+  { "id": "operate", "order": 2, "name": "Operate", "verb": "Watch", "line": "Every conversation in one inbox. Step in on any of them, at any moment.", "url": "/product/operate" },
+  { "id": "measure", "order": 3, "name": "Measure", "verb": "Count", "line": "Each agent reports in meetings booked, tickets closed and cost saved.", "url": "/product/measure" },
+  { "id": "optimize", "order": 4, "name": "Optimize", "verb": "Improve", "line": "Agents test their replies and suggest playbook changes you approve.", "url": "/product/optimize" }
+]

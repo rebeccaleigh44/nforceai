@@ -1,0 +1,207 @@
+---
+/**
+ * Product UI recomposed in HTML (sample data). One frosted card per product
+ * moment; the `kind` picks the layout. Static: no JS. Always a "night" panel,
+ * so live UI glows on both night and daylight sections.
+ */
+type Item = Record<string, any>;
+interface Props {
+  title: string;
+  kind: 'kv' | 'rows' | 'bars' | 'chips' | 'chat' | 'versions' | 'tests' | 'stages' | 'flow' | 'table';
+  items: Item[];
+  note?: string;
+  banner?: string;
+  cols?: string[];
+  class?: string;
+}
+const { title, kind, items, note, banner, cols, class: cls = '' } = Astro.props;
+const dot = (s?: string) => (s ? `dot ${s}` : 'dot agent');
+---
+<figure class:list={['ui', `ui--${kind}`, cls]}>
+  <figcaption class="ui-h">
+    <span class="ui-t">{title}</span>
+    <span class="ui-s">Sample data</span>
+  </figcaption>
+
+  {banner && <p class="ui-banner">{banner}</p>}
+
+  {kind === 'kv' && (
+    <dl class="ui-kv">
+      {items.map((i) => (
+        <div><dt>{i.k}</dt><dd>{i.status && <span class={dot(i.status)} />}{i.v}</dd></div>
+      ))}
+    </dl>
+  )}
+
+  {kind === 'rows' && (
+    <ul class="ui-rows">
+      {items.map((i) => (
+        <li>
+          <span class="ui-rn">{i.name}<small>{i.meta}</small></span>
+          <span class="ui-rs"><span class={dot(i.status)} />{i.label}</span>
+          {i.action && <span class="ui-act">{i.action}</span>}
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {kind === 'bars' && (
+    <ul class="ui-bars">
+      {items.map((i) => (
+        <li>
+          <span class="ui-bl">{i.name}</span>
+          <span class="ui-bt"><i style={`width:${Math.round(i.w * 100)}%`} /></span>
+          <span class="ui-bv num">{i.value}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {kind === 'chips' && (
+    <ul class="ui-chips">
+      {items.map((i) => (
+        <li><span class={dot(i.status ?? 'none')} />{i.name}<span class="num">{i.count}</span></li>
+      ))}
+    </ul>
+  )}
+
+  {kind === 'chat' && (
+    <ol class="ui-chat">
+      {items.map((i) => (
+        <li class={`ui-m ${i.who}`}>
+          <span class="ui-who">{i.who === 'contact' ? 'Customer' : i.who === 'agent' ? 'Agent' : 'You'}</span>
+          <span class="ui-txt">{i.text}</span>
+        </li>
+      ))}
+    </ol>
+  )}
+
+  {kind === 'versions' && (
+    <ul class="ui-rows">
+      {items.map((i) => (
+        <li>
+          <span class="ui-rn">{i.name}<small class="num">{i.v}</small></span>
+          <span class={`ui-pill ${i.state}`}>{i.state === 'live' ? 'Live' : i.state === 'draft' ? 'Draft' : 'Archived'}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {kind === 'tests' && (
+    <ul class="ui-rows">
+      {items.map((i) => (
+        <li>
+          <span class="ui-rn">{i.name}</span>
+          <span class="ui-rs"><span class={i.result === 'pass' ? 'dot ok' : 'dot alert'} />{i.result === 'pass' ? 'Pass' : 'Fail'}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {kind === 'stages' && (
+    <ol class="ui-stages">
+      {items.map((i) => (
+        <li>
+          <span class="ui-sb" style={`width:${Math.max(18, Math.round(i.w * 100))}%`}>{i.name}</span>
+          <span class="num">{i.count}</span>
+        </li>
+      ))}
+    </ol>
+  )}
+
+  {kind === 'flow' && (
+    <ol class="ui-flow">
+      {items.map((i, n) => (
+        <li>
+          <span class="ui-node"><b>{i.name}</b><small>{i.meta}</small></span>
+          {n < items.length - 1 && <span class="ui-arrow" aria-hidden="true" />}
+        </li>
+      ))}
+    </ol>
+  )}
+
+  {kind === 'table' && (
+    <table class="ui-table">
+      <thead><tr>{(cols ?? []).map((c) => <th scope="col">{c}</th>)}</tr></thead>
+      <tbody>{items.map((i) => <tr><th scope="row">{i.name}</th><td class="num">{i.a}</td><td class="num">{i.b}</td><td class="num">{i.c}</td></tr>)}</tbody>
+    </table>
+  )}
+
+  {note && <p class="ui-note">{note}</p>}
+</figure>
+
+<style>
+  .ui {
+    margin: 0; padding: 1.1rem 1.25rem 1.25rem; border-radius: var(--r-lg); color: var(--c-tint); font-size: var(--fs-sm);
+    background: linear-gradient(160deg, rgb(27 18 166 / .92), rgb(14 10 74 / .96));
+    border: 1px solid rgb(255 255 255 / .14);
+    box-shadow: 0 40px 80px -40px rgb(7 6 31 / .7), inset 0 1px 0 rgb(255 255 255 / .08);
+  }
+  :global(.night) .ui { background: rgb(255 255 255 / .07); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+  .ui-h { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: .8rem; margin-bottom: .5rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
+  .ui-t { color: var(--c-white); font-weight: 500; }
+  .ui-s { font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--c-lilac); border: 1px solid rgb(217 214 255 / .3); border-radius: 99px; padding: .1rem .5rem; white-space: nowrap; }
+  .ui-banner { margin: .25rem 0 .75rem; padding: .45rem .7rem; border-radius: var(--r-sm); background: var(--c-warn); color: var(--c-ink); font-size: var(--fs-xs); font-weight: 400; }
+  .ui-note { margin-top: .75rem; font-size: var(--fs-xs); color: var(--c-lilac); }
+
+  .ui-kv { margin: 0; }
+  .ui-kv div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid rgb(255 255 255 / .08); }
+  .ui-kv div:last-child { border: 0; }
+  .ui-kv dt { color: var(--c-lilac); font-size: var(--fs-xs); align-self: center; }
+  .ui-kv dd { margin: 0; color: var(--c-white); display: inline-flex; align-items: center; gap: .45rem; }
+
+  .ui-rows { list-style: none; margin: 0; padding: 0; }
+  .ui-rows li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .3rem 1rem; padding: .7rem 0; border-bottom: 1px solid rgb(255 255 255 / .08); }
+  .ui-rows li:last-child { border: 0; }
+  .ui-rn { display: grid; color: var(--c-white); font-weight: 400; min-width: 0; }
+  .ui-rn small { color: var(--c-lilac); font-size: .75rem; font-weight: 300; }
+  .ui-rs { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; white-space: nowrap; }
+  .ui-act { grid-column: 1 / -1; justify-self: start; font-size: .75rem; padding: .25rem .7rem; border-radius: 99px; background: var(--c-white); color: var(--c-heading); font-weight: 500; }
+  .ui-pill { font-size: .6875rem; padding: .15rem .6rem; border-radius: 99px; border: 1px solid rgb(255 255 255 / .2); }
+  .ui-pill.live { background: rgb(0 202 75 / .16); border-color: rgb(0 202 75 / .5); color: var(--c-white); }
+  .ui-pill.draft { background: rgb(252 170 30 / .14); border-color: rgb(252 170 30 / .5); color: var(--c-white); }
+  .ui-pill.archived { color: var(--c-lilac); }
+
+  .ui-bars { list-style: none; margin: 0; padding: .25rem 0 0; display: grid; gap: .6rem; }
+  .ui-bars li { display: grid; grid-template-columns: 7.5rem 1fr 3.5rem; align-items: center; gap: .75rem; }
+  .ui-bl { font-size: var(--fs-xs); color: var(--c-lilac); }
+  .ui-bt { height: 8px; border-radius: 8px; background: rgb(255 255 255 / .08); overflow: hidden; }
+  .ui-bt i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, #6F5CFF, var(--c-primary)); }
+  .ui-bv { text-align: right; color: var(--c-white); }
+
+  .ui-chips { list-style: none; margin: 0; padding: .25rem 0 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+  .ui-chips li { display: inline-flex; align-items: center; gap: .45rem; padding: .35rem .7rem; border-radius: 99px; background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .14); color: var(--c-white); font-size: .8125rem; }
+  .ui-chips .num { color: var(--c-lilac); font-size: .75rem; }
+  .ui-chips .dot.none { display: none; }
+
+  .ui-chat { list-style: none; margin: 0; padding: .25rem 0 0; display: grid; gap: .55rem; }
+  .ui-m { display: grid; gap: .15rem; max-width: 86%; }
+  .ui-m.agent, .ui-m.you { justify-self: end; }
+  .ui-who { font-size: .6875rem; color: var(--c-lilac); }
+  .ui-m.agent .ui-who, .ui-m.you .ui-who { text-align: right; }
+  .ui-txt { padding: .55rem .8rem; border-radius: 14px; line-height: 1.4; }
+  .ui-m.contact .ui-txt { background: rgb(255 255 255 / .1); color: var(--c-white); border-top-left-radius: 4px; }
+  .ui-m.agent .ui-txt { background: var(--c-primary); color: var(--c-white); border-top-right-radius: 4px; }
+  .ui-m.you .ui-txt { background: var(--c-white); color: var(--c-heading); border-top-right-radius: 4px; font-weight: 400; }
+
+  .ui-stages { list-style: none; margin: 0; padding: .25rem 0 0; display: grid; gap: .45rem; }
+  .ui-stages li { display: flex; align-items: center; gap: .75rem; }
+  .ui-sb { padding: .5rem .75rem; border-radius: var(--r-sm); background: linear-gradient(90deg, rgb(111 92 255 / .55), rgb(69 47 244 / .8)); color: var(--c-white); font-size: .8125rem; white-space: nowrap; }
+  .ui-stages .num { color: var(--c-white); }
+
+  .ui-flow { list-style: none; margin: 0; padding: .5rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+  .ui-flow li { display: flex; align-items: center; gap: .5rem; }
+  .ui-node { display: grid; padding: .55rem .8rem; border-radius: var(--r-md); background: rgb(255 255 255 / .08); border: 1px solid rgb(255 255 255 / .16); }
+  .ui-node b { color: var(--c-white); font-weight: 500; font-size: .8125rem; }
+  .ui-node small { color: var(--c-lilac); font-size: .6875rem; }
+  .ui-arrow { width: 18px; height: 1px; background: rgb(217 214 255 / .6); position: relative; }
+  .ui-arrow::after { content: ""; position: absolute; right: -1px; top: -3px; border: 3.5px solid transparent; border-left-color: rgb(217 214 255 / .8); border-right: 0; }
+
+  .ui-table { width: 100%; border-collapse: collapse; }
+  .ui-table th, .ui-table td { padding: .6rem .4rem; text-align: right; border-bottom: 1px solid rgb(255 255 255 / .08); font-weight: 300; }
+  .ui-table thead th { font-size: .6875rem; color: var(--c-lilac); letter-spacing: .04em; }
+  .ui-table th:first-child { text-align: left; }
+  .ui-table tbody th { color: var(--c-white); font-weight: 400; }
+  .ui-table td { color: var(--c-white); }
+  .ui-table tr:last-child th, .ui-table tr:last-child td { border: 0; }
+</style>

@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Arcs from '../components/Arcs.astro';
+import DemoForm from '../components/islands/DemoForm';
+import { getCountries, getCountryCallingCode } from 'libphonenumber-js/min';
+
+// Built at compile time so the client never downloads phone metadata.
+const dn = new Intl.DisplayNames(['en'], { type: 'region' });
+const countries = getCountries()
+  .map((code) => ({ code, name: dn.of(code) ?? code, dial: '+' + getCountryCallingCode(code) }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+const expect = [
+  ['30 minutes', 'with someone who sets agents up every day'],
+  ['Your use case', 'an agent configured for your channels and leads or tickets'],
+  ['Your numbers', 'what it would save, and what it would cost'],
+];
+---
+<Base
+  title="Book a Demo | NForce.AI"
+  description="See an NForce agent work on your own leads and tickets. Thirty minutes, your use case, your numbers."
+>
+  <section class="section night grain demo" aria-labelledby="demo-h">
+    <Arcs class="demo-arcs" rings={10} />
+    <div class="demo-beam" aria-hidden="true"></div>
+    <div class="wrap demo-grid">
+      <div class="demo-copy">
+        <p class="label eyebrow">Book a demo</p>
+        <h1 id="demo-h">See an agent work on your own leads.</h1>
+        <ul class="expect">
+          {expect.map(([h, p]) => <li><span class="e-h">{h}</span><span class="e-p">{p}</span></li>)}
+        </ul>
+      </div>
+      <div class="demo-form frost-light">
+        <DemoForm client:idle countries={countries} />
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .demo { padding-top: clamp(3rem, 6vw, 5rem); }
+  :global(.demo-arcs) { position: absolute; z-index: -1; width: 1200px; left: -560px; bottom: -520px; opacity: .55; }
+  .demo-beam { position: absolute; z-index: -1; top: 0; bottom: 0; left: 46%; width: 260px; background: radial-gradient(50% 45% at 50% 35%, rgb(185 179 255 / .4), transparent 70%); filter: blur(30px); }
+  .demo-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .demo-copy h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); max-width: 12ch; }
+  .expect { list-style: none; margin: 2.5rem 0 0; padding: 0; }
+  .expect li { display: grid; gap: .2rem; padding: 1rem 0; border-top: 1px solid rgb(255 255 255 / .14); }
+  .e-h { color: var(--c-white); font-weight: 600; }
+  .e-p { color: var(--c-tint); }
+  .demo-form { padding: clamp(1.5rem, 3vw, 2.25rem); background: rgb(255 255 255 / .94); color: var(--c-body); }
+  @media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; } }
+</style>

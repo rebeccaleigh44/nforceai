@@ -1,0 +1,65 @@
+[
+  {
+    "id": "core",
+    "name": "Core platform",
+    "price": 300,
+    "kind": "core",
+    "summary": "Deploy and operate agents on every channel.",
+    "includes": [
+      "Unlimited agents",
+      "WhatsApp, phone, email and web chat",
+      "Live monitoring and human takeover",
+      "Bring your own LLM keys",
+      "No per-message fees"
+    ],
+    "order": 0
+  },
+  {
+    "id": "playbooks",
+    "name": "Playbooks",
+    "price": 100,
+    "kind": "module",
+    "summary": "Reusable conversation flows for each team.",
+    "includes": [
+      "Qualification and booking flows",
+      "Handoff rules"
+    ],
+    "order": 1
+  },
+  {
+    "id": "measure",
+    "name": "Measure",
+    "price": 100,
+    "kind": "module",
+    "summary": "Every agent measured in revenue and cost.",
+    "includes": [
+      "KPI dashboards",
+      "Revenue attribution"
+    ],
+    "order": 2
+  },
+  {
+    "id": "optimize",
+    "name": "Optimize",
+    "price": 100,
+    "kind": "module",
+    "summary": "Agents improve from their own results.",
+    "includes": [
+      "Reply testing",
+      "Suggested playbook changes"
+    ],
+    "order": 3
+  },
+  {
+    "id": "funnels",
+    "name": "Funnels",
+    "price": 100,
+    "kind": "module",
+    "summary": "Track every lead from first message to booked.",
+    "includes": [
+      "Stage tracking",
+      "Drop-off alerts"
+    ],
+    "order": 4
+  }
+]

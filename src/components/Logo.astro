@@ -1,0 +1,15 @@
+---
+/**
+ * Official NForce.AI logo (logo.png from nforce.ai, 1788 x 317).
+ * Used as supplied: never redrawn or restyled. Swap for the SVG master when it arrives.
+ */
+interface Props { class?: string; height?: number }
+const { class: cls = '', height = 26 } = Astro.props;
+---
+<a href="/" class:list={['logo', cls]}>
+  <img src="/brand/logo.png" alt="NForce.AI home" width="1788" height="317" style={`height:${height}px`} decoding="async" />
+</a>
+<style>
+  .logo { display: inline-flex; align-items: center; line-height: 0; }
+  .logo img { width: auto; }
+</style>

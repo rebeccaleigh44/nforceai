@@ -1,0 +1,6 @@
+---
+import { getEntry } from 'astro:content';
+import LegalPage from '../layouts/LegalPage.astro';
+const entry = (await getEntry('legal', 'subprocessors'))!;
+---
+<LegalPage entry={entry} />

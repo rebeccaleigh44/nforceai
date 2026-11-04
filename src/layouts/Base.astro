@@ -1,0 +1,68 @@
+---
+import '@fontsource-variable/sora/wght.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { cssVars } from '../lib/tokens';
+import soraUrl from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
+
+interface Props { title: string; description: string; ogImage?: string; noindex?: boolean }
+const { title, description, ogImage = '/brand/og.png', noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" href="/brand/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="preload" href={soraUrl} as="font" type="font/woff2" crossorigin />
+    <style is:global set:html={cssVars()}></style>
+    <ClientRouter fallback="swap" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Proof numbers count up once on first view, then stay put.
+      function initCounters() {
+        const els = document.querySelectorAll<HTMLElement>('[data-count]:not([data-counted])');
+        if (!els.length) return;
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            const el = e.target as HTMLElement; io.unobserve(el); el.dataset.counted = '1';
+            const to = Number(el.dataset.count); const out = el.querySelector('.n') as HTMLElement;
+            if (reduce || !out) continue;
+            const t0 = performance.now(); const dur = 1400;
+            const tick = (t: number) => {
+              const p = Math.min(1, (t - t0) / dur); const v = Math.round(to * (1 - Math.pow(1 - p, 3)));
+              out.textContent = v.toLocaleString('en-US'); if (p < 1) requestAnimationFrame(tick);
+            };
+            out.textContent = '0'; requestAnimationFrame(tick);
+          }
+        }, { threshold: 0.4 });
+        els.forEach((el) => io.observe(el));
+      }
+      document.addEventListener('astro:page-load', initCounters);
+    </script>
+  </body>
+</html>

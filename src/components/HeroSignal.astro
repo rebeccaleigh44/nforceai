@@ -1,0 +1,137 @@
+---
+/**
+ * Hero graphic: conversations arrive from four channels, travel to one agent at
+ * the center of the orbit, and leave as results. Static SVG + CSS, no JS.
+ * Ambient loop runs 8s; reduced motion shows the still state.
+ */
+import { IconChat, IconEmail, IconPhone, IconWhatsApp } from './islands/Icons';
+
+// Geometry in a 640 x 560 frame; the agent sits at C.
+const C = { x: 360, y: 280 };
+const channels = [
+  { name: 'Chat', Icon: IconChat, x: 120, y: 112 },
+  { name: 'E-mail', Icon: IconEmail, x: 70, y: 224 },
+  { name: 'Phone', Icon: IconPhone, x: 70, y: 336 },
+  { name: 'WhatsApp', Icon: IconWhatsApp, x: 120, y: 448 },
+];
+const results = [
+  { label: 'Demo scheduled', tone: 'ok', x: 588, y: 150 },
+  { label: 'Ticket resolved', tone: 'ok', x: 606, y: 280 },
+  { label: '+$340 revenue', tone: 'value', x: 588, y: 410 },
+];
+const inPath = (x: number, y: number) => `M${x + 22} ${y} C ${x + 130} ${y}, ${C.x - 120} ${C.y}, ${C.x - 58} ${C.y}`;
+const outPath = (x: number, y: number) => `M${C.x + 58} ${C.y} C ${C.x + 120} ${C.y}, ${x - 150} ${y}, ${x - 78} ${y}`;
+const pct = (v: number, of: number) => `${(v / of) * 100}%`;
+const rings = [92, 140, 196, 262];
+---
+<div class="hs" aria-hidden="true">
+  <svg class="hs-svg" viewBox="0 0 640 560" fill="none">
+    <defs>
+      <linearGradient id="hs-in" x1="0" x2="1">
+        <stop offset="0" stop-color="#04B6D4" stop-opacity="0" />
+        <stop offset=".45" stop-color="#9C9CFF" />
+        <stop offset="1" stop-color="#FFFFFF" />
+      </linearGradient>
+      <linearGradient id="hs-out" x1="0" x2="1">
+        <stop offset="0" stop-color="#FFFFFF" />
+        <stop offset="1" stop-color="#00CA4B" stop-opacity=".2" />
+      </linearGradient>
+      <radialGradient id="hs-glow">
+        <stop offset="0" stop-color="#8F82FF" stop-opacity=".55" />
+        <stop offset="1" stop-color="#452FF4" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <circle cx={C.x} cy={C.y} r="150" fill="url(#hs-glow)" />
+    {rings.map((r, i) => (
+      <circle class={`hs-ring hs-ring-${i}`} cx={C.x} cy={C.y} r={r}
+        stroke-dasharray={`${(r * 5.2).toFixed(0)} ${(r * 1.08).toFixed(0)}`}
+        style={`transform-origin:${C.x}px ${C.y}px`} />
+    ))}
+
+    {channels.map((c, i) => (
+      <g>
+        <path class="hs-rail" d={inPath(c.x, c.y)} />
+        <path class="hs-sig hs-sig-in" d={inPath(c.x, c.y)} pathLength="1" style={`animation-delay:${i * 2}s`} />
+      </g>
+    ))}
+    {results.map((r, i) => (
+      <g class="hs-out">
+        <path class="hs-rail" d={outPath(r.x, r.y)} />
+        <path class="hs-sig hs-sig-out" d={outPath(r.x, r.y)} pathLength="1" style={`animation-delay:${i * 2 + 1.2}s`} />
+      </g>
+    ))}
+  </svg>
+
+  {channels.map((c) => (
+    <div class="hs-ch" style={`left:${pct(c.x, 640)};top:${pct(c.y, 560)}`}>
+      <span class="hs-ci"><c.Icon size={20} /></span>
+      <span class="hs-cn">{c.name}</span>
+    </div>
+  ))}
+
+  <div class="hs-agent" style={`left:${pct(C.x, 640)};top:${pct(C.y, 560)}`}>
+    <span class="hs-disc"><img src="/brand/apple-touch-icon.png" alt="" width="180" height="180" /></span>
+    <span class="hs-an">Astra</span>
+    <span class="hs-as"><span class="dot ok"></span>AI agent, live</span>
+  </div>
+
+  {results.map((r, i) => (
+    <div class={`hs-res hs-r${i} ${r.tone} ${i === 1 ? 'hs-mid' : ''}`} style={`left:${pct(r.x, 640)};top:${pct(r.y, 560)}`}>{r.label}</div>
+  ))}
+</div>
+
+<style>
+  .hs { position: relative; width: 100%; aspect-ratio: 640 / 560; max-width: 720px; margin-left: auto; }
+  .hs-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .hs-ring { stroke: rgb(217 214 255 / .22); stroke-width: 1; animation: hs-spin 48s linear infinite; }
+  .hs-ring-1 { stroke: rgb(217 214 255 / .4); stroke-width: 1.4; animation-direction: reverse; animation-duration: 64s; }
+  .hs-ring-3 { stroke: rgb(217 214 255 / .12); animation-duration: 90s; }
+  @keyframes hs-spin { to { transform: rotate(360deg); } }
+  .hs-rail { stroke: rgb(217 214 255 / .34); stroke-width: 1.2; }
+  .hs-sig { stroke-width: 3; stroke-linecap: round; stroke-dasharray: .3 1.3; stroke-dashoffset: .6; animation: hs-flow 8s cubic-bezier(.45, 0, .2, 1) infinite; }
+  .hs-sig-in { stroke: url(#hs-in); }
+  .hs-sig-out { stroke: url(#hs-out); }
+  @keyframes hs-flow { 0% { stroke-dashoffset: .3; opacity: 0; } 4% { opacity: 1; } 22% { stroke-dashoffset: -1; opacity: 1; } 24%, 100% { stroke-dashoffset: -1; opacity: 0; } }
+
+  .hs-ch { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: .6rem; }
+  .hs-ci {
+    width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: var(--c-white);
+    background: rgb(255 255 255 / .08); border: 1px solid rgb(255 255 255 / .2);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  }
+  .hs-cn { position: absolute; right: calc(100% + .6rem); font-size: var(--fs-xs); color: var(--c-lilac); white-space: nowrap; }
+
+  .hs-agent { position: absolute; transform: translate(-50%, -38%); display: grid; justify-items: center; gap: .35rem; text-align: center; }
+  .hs-disc {
+    width: 112px; height: 112px; border-radius: 50%; display: grid; place-items: center; background: var(--c-white);
+    box-shadow: 0 0 0 10px rgb(255 255 255 / .08), 0 0 0 22px rgb(255 255 255 / .04), 0 30px 60px -20px rgb(7 6 31 / .8);
+  }
+  .hs-disc img { width: 64px; height: 64px; }
+  .hs-an { margin-top: .6rem; color: var(--c-white); font-weight: 600; font-size: var(--fs-lg); }
+  .hs-as { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--fs-xs); color: var(--c-lilac); }
+
+  .hs-res {
+    position: absolute; transform: translate(-50%, -50%); white-space: nowrap;
+    padding: .45rem .9rem; border-radius: 99px; font-size: var(--fs-xs); font-weight: 500; letter-spacing: .02em;
+    color: var(--c-white); background: rgb(255 255 255 / .08); border: 1px solid rgb(255 255 255 / .18);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    display: inline-flex; align-items: center; gap: .45rem;
+  }
+  .hs-res.ok::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--c-ok); }
+  .hs-res.value { color: var(--c-white); font-weight: 600; }
+
+  @media (max-width: 560px) {
+    .hs-cn { display: none; }
+    .hs-ci { width: 36px; height: 36px; }
+    .hs-disc { width: 80px; height: 80px; } .hs-disc img { width: 46px; height: 46px; }
+    .hs-res { font-size: .6875rem; padding: .3rem .6rem; transform: translate(-88%, -50%); }
+    .hs-mid, .hs-out { display: none; }
+    .hs-r0 { top: 14% !important; }
+    .hs-r2 { top: 92% !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hs-ring { animation: none; }
+    .hs-sig { animation: none; stroke-dashoffset: -.35; opacity: 1; }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Arcs from '../components/Arcs.astro';
+---
+<Base title="Page not found | NForce.AI" description="This page has moved or doesn't exist.">
+  <section class="section night grain nf">
+    <Arcs class="nf-arcs" rings={10} />
+    <div class="wrap">
+      <p class="label eyebrow">Signal lost</p>
+      <h1>This page has moved or doesn't exist.</h1>
+      <p class="lede" style="margin:1.25rem 0 2rem;color:var(--c-tint)">Head back to the console.</p>
+      <a class="btn btn-primary" href="/">Go to the home page</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf { min-height: 70vh; display: grid; align-items: center; }
+  .nf h1 { max-width: 16ch; }
+  :global(.nf-arcs) { position: absolute; z-index: -1; width: 1100px; right: -400px; top: 50%; transform: translateY(-50%); opacity: .5; }
+</style>

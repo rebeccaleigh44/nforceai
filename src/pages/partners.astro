@@ -1,0 +1,175 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import UiCard from '../components/UiCard.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import StatGrid from '../components/StatGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+// Copy carried over from the live Partners page.
+// TODO: the market stats below have no source on the live site. Add sources or replace before launch.
+const opportunity = [
+  { value: '$50B+', label: 'AI agent market by 2028' },
+  { value: '73%', label: 'of businesses plan to adopt AI agents' },
+  { value: '5x', label: 'growth in demand since 2024' },
+  { value: 'MRR', label: 'Recurring commissions on every client' },
+];
+const steps = [
+  { h: 'Implement', p: 'Design and build AI agent solutions for your clients using the NForce platform. Earn project fees for setup and configuration.' },
+  { h: 'Earn project fees', p: 'Charge your clients for agent design, training, integration and go-live. You set your rates, you own the relationship.' },
+  { h: 'Earn MRR commissions', p: "Receive recurring commissions on every client's monthly platform subscription, for as long as they stay on the platform." },
+];
+const benefits = [
+  { h: 'Own the relationship', p: 'You are the primary point of contact. NForce works in the background to power your solutions.' },
+  { h: 'Recurring revenue', p: 'Earn monthly commissions on every active client, building long-term, predictable income.' },
+  { h: 'Low barrier to entry', p: 'No upfront investment required. Start small with one client and grow from there.' },
+  { h: 'Dedicated partner portal', p: 'Manage all your clients from a single dashboard with role-based access and isolated environments.' },
+  { h: 'Scalable model', p: 'One platform, unlimited clients. No need to build custom infrastructure for each deployment.' },
+  { h: 'Growing market', p: 'Put your agency at the front of AI agent delivery with proven, enterprise-grade technology.' },
+];
+// TODO: swap these names for the partners' logo files.
+const featured = ['AAAgency', 'Inbound Cycle', 'Happy Operators', 'Kronoflo'];
+
+// Revenue model, sample: three clients joining in months 1, 4 and 8.
+// Each join brings a one-off project fee; each active client adds the same monthly commission.
+const joins = [1, 4, 8];
+const FEE = 3, MRR = 1;
+const months = Array.from({ length: 12 }, (_, i) => {
+  const m = i + 1;
+  return { m, fee: joins.includes(m) ? FEE : 0, mrr: joins.filter((j) => j <= m).length * MRR };
+});
+const max = Math.max(...months.map((x) => x.fee + x.mrr));
+const W = 480, H = 240, gap = 10, bw = (W - gap * 11) / 12;
+const y = (v: number) => (v / max) * (H - 20);
+---
+<Base title="Partner Program | NForce.AI" description="Join the NForce partner program and add an AI agent practice to your agency.">
+  <PageHero
+    eyebrow="Partner program"
+    title="Grow your agency with AI"
+    lede="Join the NForce partner program and add an AI agent practice to your agency, with recurring revenue, full platform access and hands-on support."
+    primary={{ label: 'Become a partner', href: '/demo' }}
+    secondary={{ label: 'How it works', href: '#how' }}
+  >
+    <figure class="rev">
+      <figcaption class="rev-h"><span>Partner revenue, three sample clients</span><span class="rev-s">Illustrative</span></figcaption>
+      <svg viewBox={`0 0 ${W} ${H + 28}`} role="img" aria-label="Illustration: a project fee arrives when each client joins, while monthly commissions build with every active client.">
+        {months.map((x, i) => {
+          const bx = i * (bw + gap);
+          const hm = y(x.mrr), hf = y(x.fee);
+          return (
+            <g>
+              <rect x={bx} y={H - hm} width={bw} height={hm} rx="3" class="r-mrr" />
+              {x.fee > 0 && <rect x={bx} y={H - hm - hf - 2} width={bw} height={hf} rx="3" class="r-fee" />}
+              <text x={bx + bw / 2} y={H + 20} text-anchor="middle" class="r-m">{x.m}</text>
+            </g>
+          );
+        })}
+      </svg>
+      <ul class="rev-key">
+        <li><span class="k fee"></span>Project fee, when a client goes live</li>
+        <li><span class="k mrr"></span>Monthly commission, every active client</li>
+      </ul>
+    </figure>
+  </PageHero>
+
+  <section class="section day grain" aria-labelledby="opp-h">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label eyebrow">The opportunity</p><h2 id="opp-h">Your clients need AI agents. You can deliver them.</h2></div>
+        <p class="lede">Businesses across every industry are looking for AI-powered automation. As an NForce partner, you have the platform, training and support to deliver enterprise-grade AI agent solutions, and build a new recurring revenue stream.</p>
+      </div>
+      <StatGrid stats={opportunity} />
+    </div>
+  </section>
+
+  <section id="how" class="section night grain" aria-labelledby="how-h">
+    <div class="wrap">
+      <p class="label eyebrow">How it works</p>
+      <h2 id="how-h" class="how-h">Three steps to recurring revenue</h2>
+      <ol class="steps">
+        {steps.map((s, i) => (<li><span class="num s-n">0{i + 1}</span><h3>{s.h}</h3><p>{s.p}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section day grain" aria-label="Lead referrals">
+    <div class="wrap">
+      <FeatureRow
+        label="Lead referrals"
+        title="We send you leads, you close the deals"
+        body="When prospects come to NForce looking for implementation help, we route them directly to our partner network. You get warm leads that already want what you're selling: AI agent solutions."
+        bullets={[
+          { t: 'Warm leads', d: 'Prospects are already interested in AI agents. No cold outreach needed.' },
+          { t: 'Matched to your expertise', d: 'We route leads based on your industry focus, region, and capabilities.' },
+          { t: 'You own the client', d: 'Once referred, the relationship is yours. We stay in the background.' },
+        ]}
+      >
+        <UiCard title="Referred to you" kind="rows" items={[
+          { name: 'Harbor Homes', meta: 'Real estate · Lead response · EU', status: 'ok', label: 'Intro booked' },
+          { name: 'Northgate College', meta: 'Education · Support · US', status: 'agent', label: 'New referral' },
+          { name: 'Brightline Solar', meta: 'Solar · Appointment setting · UK', status: 'ok', label: 'Proposal sent' },
+        ]} note="Matched on industry, region and capabilities" />
+      </FeatureRow>
+    </div>
+  </section>
+
+  <section class="section night grain" aria-labelledby="ben-h">
+    <div class="wrap">
+      <p class="label eyebrow">Partner benefits</p>
+      <h2 id="ben-h" class="how-h">Why agencies choose NForce</h2>
+      <ul class="bens">
+        {benefits.map((b) => (<li><h3>{b.h}</h3><p>{b.p}</p></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section day grain feat-sec" aria-labelledby="fp-h">
+    <div class="wrap fp">
+      <div><p class="label eyebrow">Featured partners</p><h2 id="fp-h">Trusted by agencies worldwide</h2></div>
+      <ul class="fp-list">{featured.map((n) => <li>{n}</li>)}</ul>
+    </div>
+  </section>
+
+  <CtaBand
+    tone="night"
+    title="Grow your agency with NForce."
+    body="Book a call with our partnerships team. We'll walk you through the program, answer your questions, and help you get started."
+    primary={{ label: 'Book a call', href: '/demo' }}
+  />
+</Base>
+
+<style>
+  .rev { margin: 0; padding: 1.25rem 1.35rem; border-radius: var(--r-lg); background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .14); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+  .rev-h { display: flex; justify-content: space-between; gap: 1rem; font-size: var(--fs-sm); color: var(--c-white); font-weight: 500; padding-bottom: .9rem; margin-bottom: 1rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
+  .rev-s { font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--c-lilac); border: 1px solid rgb(217 214 255 / .3); border-radius: 99px; padding: .1rem .5rem; font-weight: 400; }
+  .rev svg { width: 100%; height: auto; overflow: visible; }
+  .r-mrr { fill: #6F5CFF; }
+  .r-fee { fill: #D9D6FF; }
+  .r-m { fill: var(--c-lilac); font-size: 11px; font-family: var(--font); }
+  .rev-key { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: var(--fs-xs); color: var(--c-tint); }
+  .rev-key li { display: inline-flex; align-items: center; gap: .5rem; }
+  .k { width: 12px; height: 12px; border-radius: 3px; }
+  .k.fee { background: #D9D6FF; } .k.mrr { background: #6F5CFF; }
+
+  .head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem 4rem; align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .head h2 { max-width: 16ch; }
+  .how-h { max-width: 18ch; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 2rem; }
+  .steps li { position: relative; padding-top: 1.5rem; border-top: 1px solid rgb(255 255 255 / .16); }
+  .steps li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #B9B3FF; }
+  .s-n { display: block; font-size: var(--fs-xl); color: #B9B3FF; margin-bottom: 1rem; }
+  .steps h3, .bens h3 { margin-bottom: .5rem; }
+  .steps p, .bens p { color: var(--c-tint); }
+  .bens { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; }
+  .bens li { padding-top: 1.25rem; border-top: 1px solid rgb(255 255 255 / .16); }
+  .fp { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem 4rem; align-items: center; }
+  .fp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid rgb(16 0 140 / .14); }
+  .fp-list li { padding: 1.4rem 0; border-bottom: 1px solid rgb(16 0 140 / .14); font-size: var(--fs-xl); font-weight: 600; color: var(--c-heading); letter-spacing: -.01em; }
+  .fp-list li:nth-child(odd) { padding-right: 1rem; }
+  @media (max-width: 960px) {
+    .head, .fp { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    .bens { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) { .bens { grid-template-columns: 1fr; } }
+</style>

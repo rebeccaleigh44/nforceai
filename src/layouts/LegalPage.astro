@@ -1,0 +1,90 @@
+---
+/** Clean text template for legal documents from the `legal` collection. */
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Arcs from '../components/Arcs.astro';
+import { legal as legalLinks } from '../lib/site';
+
+interface Props { entry: CollectionEntry<'legal'> }
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2);
+const showToc = toc.length > 3; // short documents don't need a contents list
+const path = Astro.url.pathname.replace(/\.html$/, '');
+---
+<Base title={`${entry.data.title} | NForce.AI`} description={entry.data.description}>
+  <section class="night grain lg-head" aria-labelledby="lg-h">
+    <Arcs class="lg-arcs" rings={9} />
+    <div class="wrap">
+      <p class="label eyebrow">Legal</p>
+      <h1 id="lg-h">{entry.data.title}</h1>
+      <p class="lg-date">{entry.data.dateLabel ?? 'Effective date'}: {entry.data.effective}</p>
+    </div>
+  </section>
+
+  <section class="section day lg-body">
+    <div class="wrap lg-grid">
+      <aside class="lg-side">
+        {showToc && (
+          <nav aria-label="On this page">
+            <p class="label">On this page</p>
+            <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+          </nav>
+        )}
+        <nav aria-label="Legal documents" class="lg-docs">
+          <p class="label">Legal</p>
+          <ul>{legalLinks.map((l) => <li><a href={l.href} aria-current={l.href === path ? 'page' : undefined}>{l.label}</a></li>)}</ul>
+        </nav>
+      </aside>
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lg-head { position: relative; isolation: isolate; overflow: clip; padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 5vw, 4rem); }
+  :global(.lg-arcs) { position: absolute; z-index: -1; width: 1000px; right: -380px; top: 50%; transform: translateY(-50%); opacity: .28; }
+  .lg-head h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1.05; }
+  .lg-date { margin-top: 1rem; color: var(--c-tint); }
+  .lg-body { padding-top: clamp(3rem, 6vw, 4.5rem); }
+  .lg-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .lg-side { position: sticky; top: calc(68px + 1.5rem); display: grid; gap: 2rem; max-height: calc(100vh - 68px - 3rem); overflow: auto; }
+  .lg-side ol, .lg-side ul { list-style: none; margin: .75rem 0 0; padding: 0; display: grid; gap: .1rem; }
+  .lg-side a { display: block; padding: .35rem 0; font-size: var(--fs-sm); color: var(--c-slate); text-decoration: none; line-height: 1.35; }
+  .lg-side a:hover, .lg-side a[aria-current="page"] { color: var(--c-primary); }
+  .lg-side a[aria-current="page"] { font-weight: 500; }
+
+  .prose { max-width: 72ch; color: var(--c-body); }
+  .prose :global(h2) { font-size: var(--fs-xl); margin: 2.75rem 0 .9rem; scroll-margin-top: calc(68px + 1.5rem); padding-top: 1.5rem; border-top: 1px solid rgb(16 0 140 / .12); }
+  .prose :global(h2:first-child) { margin-top: 0; padding-top: 0; border-top: 0; }
+  .prose :global(p) { margin: 0 0 1rem; }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 1.1rem; padding-left: 1.25rem; display: grid; gap: .45rem; }
+  .prose :global(ul ul) { margin: .5rem 0 .25rem; }
+  .prose :global(li > p) { margin: .5rem 0 0; }
+  .prose :global(li::marker) { color: var(--c-primary); }
+  .prose :global(strong) { color: var(--c-heading); font-weight: 600; }
+  .prose :global(a) { overflow-wrap: anywhere; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: .5rem 0 1.5rem; font-size: var(--fs-sm); }
+  .prose :global(th) { text-align: left; font-weight: 600; color: var(--c-heading); padding: .7rem .9rem .7rem 0; border-bottom: 1.5px solid rgb(16 0 140 / .25); white-space: nowrap; }
+  .prose :global(td) { padding: .75rem .9rem .75rem 0; border-bottom: 1px solid rgb(16 0 140 / .1); vertical-align: top; }
+  .prose :global(td:first-child) { color: var(--c-heading); font-weight: 400; }
+  .prose :global(td:last-child), .prose :global(th:last-child) { padding-right: 0; white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .lg-grid { grid-template-columns: 1fr; }
+    .lg-side { position: static; max-height: none; overflow: visible; }
+    .lg-side ol { grid-template-columns: 1fr 1fr; column-gap: 1.5rem; }
+    .lg-docs { display: none; }
+    .lg-side:not(:has(nav:not(.lg-docs))) { display: none; }
+  }
+  @media (max-width: 640px) {
+    .prose :global(table), .prose :global(thead), .prose :global(tbody), .prose :global(tr), .prose :global(td) { display: block; width: 100%; }
+    .prose :global(thead) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .prose :global(tr) { padding: .8rem 0; border-bottom: 1px solid rgb(16 0 140 / .12); }
+    .prose :global(td) { border: 0; padding: 0; white-space: normal !important; }
+    .prose :global(td:first-child) { font-weight: 600; }
+  }
+  @media (max-width: 520px) { .lg-side ol { grid-template-columns: 1fr; } }
+</style>
