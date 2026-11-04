@@ -126,7 +126,7 @@ export default function OrbitLoop({ stops }: { stops: Stop[] }) {
             </g>
             <circle cx="250" cy="250" r="44" class="o-core" />
           </svg>
-          <span class="o-count num">0{active + 1}</span>
+          <span class="o-count num">{active + 1}</span>
         </div>
 
         <div class="orbit-copy">

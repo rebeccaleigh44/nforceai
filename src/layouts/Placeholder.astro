@@ -26,7 +26,7 @@ const { title, description, heading, lede, kind = 'page' } = Astro.props;
 <style>
   .ph-page { min-height: 72vh; display: grid; align-items: center; }
   .pp h1 { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1.05; max-width: 16ch; }
-  .pp-lede { margin-top: 1.4rem; color: var(--c-tint); font-size: clamp(1.0625rem, 1rem + .35vw, 1.25rem); line-height: 1.5; max-width: 48ch; }
+  .pp-lede { margin-top: 1.4rem; color: var(--c-tint); font-size: var(--fs-lede); line-height: 1.5; max-width: 48ch; }
   .pp-note { display: flex; align-items: center; gap: .6rem; margin-top: 1.75rem; color: var(--c-white); font-size: var(--fs-sm); font-weight: 400; }
   .pp-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
 </style>

@@ -56,7 +56,7 @@ strong, b { font-weight: 600; }
 .label { font-size: var(--fs-sm); font-weight: 500; color: var(--c-slate2); }
 .night .label { color: var(--c-lilac); }
 
-.lede { font-size: var(--fs-lg); max-width: 38ch; }
+.lede { font-size: var(--fs-lede); line-height: 1.5; max-width: 38ch; }
 
 /* ---------- Night: navy-to-cobalt light field ---------- */
 .night {

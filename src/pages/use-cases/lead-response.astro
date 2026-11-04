@@ -8,10 +8,10 @@ import SpeedRace from '../../components/islands/SpeedRace';
 const industries = (await getCollection('industries')).map((e) => ({ id: e.id, ...e.data }));
 const nester = (await getEntry('customers', 'nester'))!.data;
 const steps = [
-  { n: '01', h: 'A lead arrives', p: 'From a form, an ad, WhatsApp, a call or web chat. The agent sees it the moment it lands.' },
-  { n: '02', h: 'The agent replies in seconds', p: 'It answers questions, asks the qualifying ones you set, and keeps the conversation moving.' },
-  { n: '03', h: 'The meeting is booked', p: 'Straight onto the right rep’s calendar, with a summary of what the lead said.' },
-  { n: '04', h: 'Your rep takes it from there', p: 'Or steps in earlier. Any conversation can be taken over at any moment.' },
+  { n: '1', h: 'A lead arrives', p: 'From a form, an ad, WhatsApp, a call or web chat. The agent sees it the moment it lands.' },
+  { n: '2', h: 'The agent replies in seconds', p: 'It answers questions, asks the qualifying ones you set, and keeps the conversation moving.' },
+  { n: '3', h: 'The meeting is booked', p: 'Straight onto the right rep’s calendar, with a summary of what the lead said.' },
+  { n: '4', h: 'Your rep takes it from there', p: 'Or steps in earlier. Any conversation can be taken over at any moment.' },
 ];
 ---
 <Base

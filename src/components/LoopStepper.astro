@@ -12,7 +12,7 @@ const { current, stops } = Astro.props;
       <li class={s.id === current ? 'on' : ''}>
         <a href={s.url} aria-current={s.id === current ? 'page' : undefined}>
           <span class="ls-dot" aria-hidden="true"></span>
-          <span class="ls-n num">0{i + 1}</span>
+          <span class="ls-n num">{i + 1}</span>
           <span class="ls-name">{s.name}</span>
         </a>
       </li>

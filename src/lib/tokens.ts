@@ -55,6 +55,8 @@ export const type = {
     sm: '0.9375rem',
     md: '1.0625rem',
     lg: 'clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem)',
+    // Secondary text under headings (hero subline, section ledes, CTA copy)
+    lede: 'clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem)',
     xl: 'clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem)',
     '2xl': 'clamp(2rem, 1.4rem + 2.4vw, 3.25rem)',
     '3xl': 'clamp(2.5rem, 1.6rem + 3.8vw, 4.75rem)',
