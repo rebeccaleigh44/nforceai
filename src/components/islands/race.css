@@ -36,7 +36,7 @@
 .race-speed { font-size: var(--fs-xs); color: var(--muted); }
 
 .race-scale { display: grid; gap: .7rem; padding-top: .5rem; animation: rin .5s var(--ease); }
-.scale-h { font-size: var(--fs-sm); font-weight: 500; color: var(--muted); }
+.scale-h { font-size: var(--fs-xs); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; opacity: .75; color: var(--muted); }
 .race-sbar { display: grid; grid-template-columns: 10rem 1fr; align-items: center; gap: 1rem; }
 .race-sl { font-size: var(--fs-xs); color: var(--fg); }
 .race-sbar i { display: block; height: 10px; border-radius: var(--r-sm); }

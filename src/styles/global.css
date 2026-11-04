@@ -52,8 +52,8 @@ strong, b { font-weight: 600; }
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
 .section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); isolation: isolate; overflow: clip; }
 
-/* Small labels: sentence case, normal spacing */
-.label { font-size: var(--fs-sm); font-weight: 500; color: var(--c-slate2); }
+/* Small labels: spaced capitals, a step lighter than body text */
+.label { font-size: var(--fs-xs); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; opacity: .75; color: var(--c-slate2); }
 .night .label { color: var(--c-lilac); }
 
 .lede { font-size: var(--fs-lede); line-height: 1.5; max-width: 38ch; }
