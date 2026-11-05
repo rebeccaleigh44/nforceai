@@ -65,7 +65,7 @@ const [lead, ...rest] = customers;
     <Arcs class="loop-arcs" rings={6} />
     <div class="wrap loop-intro">
       <h2 id="loop-h">One loop. Deploy, operate, measure, optimize</h2>
-      <p class="lede">Each turn of the loop makes your agents faster and cheaper to run. Scroll to turn it.</p>
+      <p class="lede">Each turn of the loop makes your agents faster and cheaper to run.<span class="scroll-hint"> Scroll to turn it.</span></p>
     </div>
     <OrbitLoop client:visible stops={stops} />
   </section>
@@ -171,6 +171,8 @@ const [lead, ...rest] = customers;
   .loop-intro { max-width: var(--max); }
   .loop-intro h2 { max-width: 16ch; }
   .loop-intro .lede { margin-top: 1.25rem; color: var(--c-tint); }
+  /* On phones and with reduced motion the loop stacks instead of turning on scroll */
+  @media (max-width: 860px), (prefers-reduced-motion: reduce) { .scroll-hint { display: none; } }
 
   /* Race */
   .race-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem 4rem; align-items: end; margin-bottom: 2.5rem; }

@@ -80,20 +80,22 @@
 .sug { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: .6rem; font-size: var(--fs-xs); color: var(--c-tint); }
 .appr { padding: .3rem .8rem; border-radius: var(--r-pill); background: var(--c-white); color: var(--c-heading); font-weight: 500; font-size: .75rem; }
 
-@media (max-width: 860px) {
-  .orbit { height: calc(var(--n) * 90vh + 100vh); }
-  .orbit-stick { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-content: start; gap: 0; padding-top: 1rem; }
-  .orbit-ring { width: 62vw; max-width: 300px; margin: 0 auto -1rem; }
-  .o-panel h3 { font-size: var(--fs-lg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
+/* Phones and reduced motion: no pinning. The four stops stack in order, each shown in its finished state,
+   so no panel is taller than the screen it is pinned to. */
+@media (max-width: 860px), (prefers-reduced-motion: reduce) {
   .orbit { height: auto; }
-  .orbit-stick { position: static; height: auto; grid-template-columns: 1fr; padding-block: 2rem; }
+  .orbit-stick { position: static; height: auto; min-height: 0; grid-template-columns: 1fr; padding-block: 2.5rem clamp(4rem, 12vw, 6rem); }
   .orbit-ring { display: none; }
   .o-tabs { display: none; }
-  .o-panels { gap: 3rem; }
-  .o-panel, .o-panel.off { grid-area: auto; opacity: 1; visibility: visible; transform: none; }
+  .o-panels { gap: 3.5rem; }
+  .o-panel, .o-panel.off { grid-area: auto; opacity: 1; visibility: visible; transform: none; transition: none; }
   .op { opacity: 1; transform: none; }
   .o-bar i { transform: scaleX(var(--w)); }
+  .tg.late { background: var(--c-primary); color: var(--c-white); }
+  .tg.late i { background: var(--c-white); }
+  .o-tone b i { left: 38%; }
+}
+@media (max-width: 860px) {
+  .o-panel h3 { font-size: var(--fs-lg); }
+  .o-ui { padding: 1.1rem 1.15rem; }
 }
